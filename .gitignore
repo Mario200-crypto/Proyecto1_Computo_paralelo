@@ -1,0 +1,15 @@
+# Build output
+bin/
+*.o
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Local test / visualization outputs (commit selected files with: git add -f results/viz/<file>)
+results/viz/
+
+# macOS
+.DS_Store

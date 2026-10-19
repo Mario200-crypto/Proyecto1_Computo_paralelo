@@ -1,0 +1,7 @@
+# Python 3.11 — validation (scripts/validate.py) and the working notebook. Versions from `uv pip freeze`
+# in the project venv (2026-10-19). Install: uv pip install -r requirements.txt
+numpy==2.4.6
+scikit-learn==1.9.1
+matplotlib==3.11.2
+ipykernel==7.4.0
+nbconvert==7.17.2
