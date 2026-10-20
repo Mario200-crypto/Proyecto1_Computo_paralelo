@@ -1,0 +1,54 @@
+corridas: 2320; configuraciones: 232; repeticiones por configuración: [10]; corridas con clases/conteos distintos de serial: 0
+k=2: pares reconstruidos 23888977319 vs pairs_step1 del CSV 23888977319 -> IGUALES
+k=4: pares reconstruidos 15235184159 vs pairs_step1 del CSV 15235184159 -> IGUALES
+k=8: pares reconstruidos 9843199056 vs pairs_step1 del CSV 9843199056 -> IGUALES
+k=16: pares reconstruidos 7764119585 vs pairs_step1 del CSV 7764119585 -> IGUALES
+k=32: pares reconstruidos 6186365940 vs pairs_step1 del CSV 6186365940 -> IGUALES
+k=64: pares reconstruidos 4920785797 vs pairs_step1 del CSV 4920785797 -> IGUALES
+
+== Serial, P1 (12 hilos), P2 (k=64, 12 hilos): media ± desv. est. (s) y aceleración ==
+N= 20000: serial 0.0874 ± 0.0002 | P1 0.0146 ± 0.0005 -> 5.99x | P2 0.0029 ± 0.0001 -> 29.92x | P1/P2 = 5.00
+N= 40000: serial 0.3488 ± 0.0029 | P1 0.0485 ± 0.0036 -> 7.20x | P2 0.0091 ± 0.0002 -> 38.28x | P1/P2 = 5.32
+N= 80000: serial 1.3899 ± 0.0027 | P1 0.1685 ± 0.0044 -> 8.25x | P2 0.0325 ± 0.0007 -> 42.83x | P1/P2 = 5.19
+N=120000: serial 3.1283 ± 0.0075 | P1 0.3955 ± 0.0145 -> 7.91x | P2 0.0675 ± 0.0013 -> 46.36x | P1/P2 = 5.86
+N=140000: serial 4.2517 ± 0.0020 | P1 0.5353 ± 0.0359 -> 7.94x | P2 0.0898 ± 0.0019 -> 47.37x | P1/P2 = 5.96
+N=160000: serial 5.5539 ± 0.0066 | P1 0.6777 ± 0.0312 -> 8.20x | P2 0.1174 ± 0.0072 -> 47.29x | P1/P2 = 5.77
+N=180000: serial 7.0392 ± 0.0225 | P1 0.8943 ± 0.0431 -> 7.87x | P2 0.1447 ± 0.0087 -> 48.64x | P1/P2 = 6.18
+N=200000: serial 8.6758 ± 0.0161 | P1 1.0466 ± 0.0433 -> 8.29x | P2 0.1816 ± 0.0042 -> 47.77x | P1/P2 = 5.76
+
+== N = 200000: escalamiento con hilos ==
+T= 1: P1 8.6696 ± 0.0362 (CV 0.4%) S=1.00 Pi=1.00 ef=1.00 | P2 k=64 1.1074 ± 0.0032 (CV 0.3%) S=7.83 Pi=1.00 ef=1.00
+T= 6: P1 1.5011 ± 0.0143 (CV 1.0%) S=5.78 Pi=5.78 ef=0.96 | P2 k=64 0.2685 ± 0.0005 (CV 0.2%) S=32.31 Pi=4.12 ef=0.69
+T=12: P1 1.0466 ± 0.0433 (CV 4.1%) S=8.29 Pi=8.28 ef=0.69 | P2 k=64 0.1816 ± 0.0042 (CV 2.3%) S=47.77 Pi=6.10 ef=0.51
+T=24: P1 1.0236 ± 0.0247 (CV 2.4%) S=8.48 Pi=8.47 ef=0.35 | P2 k=64 0.1878 ± 0.0036 (CV 1.9%) S=46.19 Pi=5.90 ef=0.25
+
+== N = 200000, 12 hilos: descomposición S = A x Pi por k ==
+k= 2: N2/pares=1.67 A=1.67 Pi=1.90 1/max_task_share=1.92 cotaLPT(6,12,24)=1.92,1.92,1.92 S=3.18 regiones_no_vacias=2 T_P2(1)=5.1976 T_P2(12)=2.7308
+k= 4: N2/pares=2.63 A=2.62 Pi=2.02 1/max_task_share=2.04 cotaLPT(6,12,24)=2.04,2.04,2.04 S=5.29 regiones_no_vacias=4 T_P2(1)=3.3135 T_P2(12)=1.6392
+k= 8: N2/pares=4.06 A=4.04 Pi=2.92 1/max_task_share=2.97 cotaLPT(6,12,24)=2.97,2.97,2.97 S=11.80 regiones_no_vacias=8 T_P2(1)=2.1455 T_P2(12)=0.7353
+k=16: N2/pares=5.15 A=5.10 Pi=2.72 1/max_task_share=2.74 cotaLPT(6,12,24)=2.74,2.74,2.74 S=13.90 regiones_no_vacias=15 T_P2(1)=1.7009 T_P2(12)=0.6244
+k=32: N2/pares=6.47 A=6.35 Pi=6.59 1/max_task_share=6.88 cotaLPT(6,12,24)=4.35,6.88,6.88 S=41.84 regiones_no_vacias=29 T_P2(1)=1.3658 T_P2(12)=0.2074
+k=64: N2/pares=8.13 A=7.83 Pi=6.10 1/max_task_share=6.79 cotaLPT(6,12,24)=5.95,6.79,6.79 S=47.77 regiones_no_vacias=55 T_P2(1)=1.1074 T_P2(12)=0.1816
+
+== Pi de P2 por k y hilos (N = 200000) ==
+k= 2: T=1: 1.00  T=6: 1.91  T=12: 1.90  T=24: 1.90
+k= 4: T=1: 1.00  T=6: 2.02  T=12: 2.02  T=24: 2.02
+k= 8: T=1: 1.00  T=6: 2.93  T=12: 2.92  T=24: 2.93
+k=16: T=1: 1.00  T=6: 2.72  T=12: 2.72  T=24: 2.72
+k=32: T=1: 1.00  T=6: 3.89  T=12: 6.59  T=24: 6.57
+k=64: T=1: 1.00  T=6: 4.12  T=12: 6.10  T=24: 5.90
+
+== P2 más lento que P1 con los mismos hilos ==
+48 de 192 combinaciones (N, k, T); valores de k: [2, 4]; hilos: [6, 12, 24]
+
+== Variabilidad ==
+CV mediano 0.55%; configuraciones con CV > 5%: 15 de 232; CV máximo 30.0%
+
+== Mejores configuraciones ==
+P1: 8.53x (N=180000, T=24); P2: 48.64x (N=180000, k=64, T=12)
+
+== Fases de P2 (N = 200000, k = 64): media en ms ==
+T= 1: t_build=38.78 t_step1=1068.22 t_step2=0.39 t_total=1107.40
+T= 6: t_build=7.85 t_step1=260.55 t_step2=0.13 t_total=268.54
+T=12: t_build=5.72 t_step1=175.78 t_step2=0.13 t_total=181.63
+T=24: t_build=5.60 t_step1=182.07 t_step2=0.17 t_total=187.83
