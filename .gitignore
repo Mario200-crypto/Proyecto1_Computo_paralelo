@@ -1,0 +1,19 @@
+# Build output
+bin/
+*.o
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Local test / visualization outputs (commit selected files with: git add -f results/viz/<file>)
+results/viz/
+
+# macOS
+.DS_Store
+
+# Pruebas del ejecutor del benchmark y su candado (los resultados oficiales sí se versionan: results/official/)
+results/runner_test/
+results/.benchmark.lock

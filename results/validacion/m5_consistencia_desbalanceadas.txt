@@ -1,0 +1,176 @@
+== consistency: p1, p2 contra serial (28 configuraciones x1 por dataset) ==
+    results/sensibilidad/datos/concentrada_20000.csv: serial          t_total    0.088 s   label_hash c1f8c99a1ac49de1  count_hash 30ab386e3736de6b
+      p1         1 hilos rep 1  t_total    0.087 s   PASS   (CSV idénticos)
+      p1         6 hilos rep 1  t_total    0.016 s   PASS   (CSV idénticos)
+      p1        12 hilos rep 1  t_total    0.015 s   PASS   (CSV idénticos)
+      p1        24 hilos rep 1  t_total    0.015 s   PASS   (CSV idénticos)
+      p2 k=2     1 hilos rep 1  t_total    0.088 s   PASS   (CSV idénticos)
+      p2 k=2     6 hilos rep 1  t_total    0.089 s   PASS   (CSV idénticos)
+      p2 k=2    12 hilos rep 1  t_total    0.087 s   PASS   (CSV idénticos)
+      p2 k=2    24 hilos rep 1  t_total    0.087 s   PASS   (CSV idénticos)
+      p2 k=4     1 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=4     6 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=4    12 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=4    24 hilos rep 1  t_total    0.087 s   PASS   (CSV idénticos)
+      p2 k=8     1 hilos rep 1  t_total    0.096 s   PASS   (CSV idénticos)
+      p2 k=8     6 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=8    12 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=8    24 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=16    1 hilos rep 1  t_total    0.087 s   PASS   (CSV idénticos)
+      p2 k=16    6 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=16   12 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=16   24 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=32    1 hilos rep 1  t_total    0.087 s   PASS   (CSV idénticos)
+      p2 k=32    6 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=32   12 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=32   24 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=64    1 hilos rep 1  t_total    0.087 s   PASS   (CSV idénticos)
+      p2 k=64    6 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=64   12 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+      p2 k=64   24 hilos rep 1  t_total    0.086 s   PASS   (CSV idénticos)
+    results/sensibilidad/datos/concentrada_40000.csv: serial          t_total    0.350 s   label_hash 1847cebdd1df3c97  count_hash 7ebc8a97a4cf3cb8
+      p1         1 hilos rep 1  t_total    0.350 s   PASS
+      p1         6 hilos rep 1  t_total    0.061 s   PASS
+      p1        12 hilos rep 1  t_total    0.050 s   PASS
+      p1        24 hilos rep 1  t_total    0.045 s   PASS
+      p2 k=2     1 hilos rep 1  t_total    0.347 s   PASS
+      p2 k=2     6 hilos rep 1  t_total    0.347 s   PASS
+      p2 k=2    12 hilos rep 1  t_total    0.346 s   PASS
+      p2 k=2    24 hilos rep 1  t_total    0.347 s   PASS
+      p2 k=4     1 hilos rep 1  t_total    0.345 s   PASS
+      p2 k=4     6 hilos rep 1  t_total    0.345 s   PASS
+      p2 k=4    12 hilos rep 1  t_total    0.345 s   PASS
+      p2 k=4    24 hilos rep 1  t_total    0.345 s   PASS
+      p2 k=8     1 hilos rep 1  t_total    0.345 s   PASS
+      p2 k=8     6 hilos rep 1  t_total    0.344 s   PASS
+      p2 k=8    12 hilos rep 1  t_total    0.344 s   PASS
+      p2 k=8    24 hilos rep 1  t_total    0.344 s   PASS
+      p2 k=16    1 hilos rep 1  t_total    0.345 s   PASS
+      p2 k=16    6 hilos rep 1  t_total    0.344 s   PASS
+      p2 k=16   12 hilos rep 1  t_total    0.344 s   PASS
+      p2 k=16   24 hilos rep 1  t_total    0.344 s   PASS
+      p2 k=32    1 hilos rep 1  t_total    0.345 s   PASS
+      p2 k=32    6 hilos rep 1  t_total    0.344 s   PASS
+      p2 k=32   12 hilos rep 1  t_total    0.344 s   PASS
+      p2 k=32   24 hilos rep 1  t_total    0.344 s   PASS
+      p2 k=64    1 hilos rep 1  t_total    0.346 s   PASS
+      p2 k=64    6 hilos rep 1  t_total    0.344 s   PASS
+      p2 k=64   12 hilos rep 1  t_total    0.344 s   PASS
+      p2 k=64   24 hilos rep 1  t_total    0.344 s   PASS
+    results/sensibilidad/datos/desbalanceada_20000.csv: serial          t_total    0.088 s   label_hash 2e94b75c11447b35  count_hash 3cfef0253accdbbb
+      p1         1 hilos rep 1  t_total    0.088 s   PASS   (CSV idénticos)
+      p1         6 hilos rep 1  t_total    0.016 s   PASS   (CSV idénticos)
+      p1        12 hilos rep 1  t_total    0.015 s   PASS   (CSV idénticos)
+      p1        24 hilos rep 1  t_total    0.011 s   PASS   (CSV idénticos)
+      p2 k=2     1 hilos rep 1  t_total    0.067 s   PASS   (CSV idénticos)
+      p2 k=2     6 hilos rep 1  t_total    0.065 s   PASS   (CSV idénticos)
+      p2 k=2    12 hilos rep 1  t_total    0.064 s   PASS   (CSV idénticos)
+      p2 k=2    24 hilos rep 1  t_total    0.064 s   PASS   (CSV idénticos)
+      p2 k=4     1 hilos rep 1  t_total    0.057 s   PASS   (CSV idénticos)
+      p2 k=4     6 hilos rep 1  t_total    0.056 s   PASS   (CSV idénticos)
+      p2 k=4    12 hilos rep 1  t_total    0.056 s   PASS   (CSV idénticos)
+      p2 k=4    24 hilos rep 1  t_total    0.056 s   PASS   (CSV idénticos)
+      p2 k=8     1 hilos rep 1  t_total    0.039 s   PASS   (CSV idénticos)
+      p2 k=8     6 hilos rep 1  t_total    0.028 s   PASS   (CSV idénticos)
+      p2 k=8    12 hilos rep 1  t_total    0.027 s   PASS   (CSV idénticos)
+      p2 k=8    24 hilos rep 1  t_total    0.028 s   PASS   (CSV idénticos)
+      p2 k=16    1 hilos rep 1  t_total    0.028 s   PASS   (CSV idénticos)
+      p2 k=16    6 hilos rep 1  t_total    0.014 s   PASS   (CSV idénticos)
+      p2 k=16   12 hilos rep 1  t_total    0.015 s   PASS   (CSV idénticos)
+      p2 k=16   24 hilos rep 1  t_total    0.015 s   PASS   (CSV idénticos)
+      p2 k=32    1 hilos rep 1  t_total    0.025 s   PASS   (CSV idénticos)
+      p2 k=32    6 hilos rep 1  t_total    0.012 s   PASS   (CSV idénticos)
+      p2 k=32   12 hilos rep 1  t_total    0.012 s   PASS   (CSV idénticos)
+      p2 k=32   24 hilos rep 1  t_total    0.013 s   PASS   (CSV idénticos)
+      p2 k=64    1 hilos rep 1  t_total    0.023 s   PASS   (CSV idénticos)
+      p2 k=64    6 hilos rep 1  t_total    0.011 s   PASS   (CSV idénticos)
+      p2 k=64   12 hilos rep 1  t_total    0.011 s   PASS   (CSV idénticos)
+      p2 k=64   24 hilos rep 1  t_total    0.011 s   PASS   (CSV idénticos)
+    results/sensibilidad/datos/desbalanceada_40000.csv: serial          t_total    0.348 s   label_hash 5605924567e34056  count_hash e84975c94f42c3de
+      p1         1 hilos rep 1  t_total    0.348 s   PASS
+      p1         6 hilos rep 1  t_total    0.061 s   PASS
+      p1        12 hilos rep 1  t_total    0.052 s   PASS
+      p1        24 hilos rep 1  t_total    0.045 s   PASS
+      p2 k=2     1 hilos rep 1  t_total    0.266 s   PASS
+      p2 k=2     6 hilos rep 1  t_total    0.258 s   PASS
+      p2 k=2    12 hilos rep 1  t_total    0.258 s   PASS
+      p2 k=2    24 hilos rep 1  t_total    0.258 s   PASS
+      p2 k=4     1 hilos rep 1  t_total    0.229 s   PASS
+      p2 k=4     6 hilos rep 1  t_total    0.224 s   PASS
+      p2 k=4    12 hilos rep 1  t_total    0.224 s   PASS
+      p2 k=4    24 hilos rep 1  t_total    0.224 s   PASS
+      p2 k=8     1 hilos rep 1  t_total    0.162 s   PASS
+      p2 k=8     6 hilos rep 1  t_total    0.129 s   PASS
+      p2 k=8    12 hilos rep 1  t_total    0.128 s   PASS
+      p2 k=8    24 hilos rep 1  t_total    0.128 s   PASS
+      p2 k=16    1 hilos rep 1  t_total    0.117 s   PASS
+      p2 k=16    6 hilos rep 1  t_total    0.074 s   PASS
+      p2 k=16   12 hilos rep 1  t_total    0.074 s   PASS
+      p2 k=16   24 hilos rep 1  t_total    0.075 s   PASS
+      p2 k=32    1 hilos rep 1  t_total    0.101 s   PASS
+      p2 k=32    6 hilos rep 1  t_total    0.060 s   PASS
+      p2 k=32   12 hilos rep 1  t_total    0.060 s   PASS
+      p2 k=32   24 hilos rep 1  t_total    0.060 s   PASS
+      p2 k=64    1 hilos rep 1  t_total    0.091 s   PASS
+      p2 k=64    6 hilos rep 1  t_total    0.050 s   PASS
+      p2 k=64   12 hilos rep 1  t_total    0.050 s   PASS
+      p2 k=64   24 hilos rep 1  t_total    0.050 s   PASS
+    results/sensibilidad/datos/uniforme_20000.csv: serial          t_total    0.087 s   label_hash 2b3a7bcd7987d06c  count_hash 057fcddc39cc9d55
+      p1         1 hilos rep 1  t_total    0.087 s   PASS   (CSV idénticos)
+      p1         6 hilos rep 1  t_total    0.016 s   PASS   (CSV idénticos)
+      p1        12 hilos rep 1  t_total    0.015 s   PASS   (CSV idénticos)
+      p1        24 hilos rep 1  t_total    0.011 s   PASS   (CSV idénticos)
+      p2 k=2     1 hilos rep 1  t_total    0.046 s   PASS   (CSV idénticos)
+      p2 k=2     6 hilos rep 1  t_total    0.024 s   PASS   (CSV idénticos)
+      p2 k=2    12 hilos rep 1  t_total    0.024 s   PASS   (CSV idénticos)
+      p2 k=2    24 hilos rep 1  t_total    0.024 s   PASS   (CSV idénticos)
+      p2 k=4     1 hilos rep 1  t_total    0.024 s   PASS   (CSV idénticos)
+      p2 k=4     6 hilos rep 1  t_total    0.006 s   PASS   (CSV idénticos)
+      p2 k=4    12 hilos rep 1  t_total    0.007 s   PASS   (CSV idénticos)
+      p2 k=4    24 hilos rep 1  t_total    0.007 s   PASS   (CSV idénticos)
+      p2 k=8     1 hilos rep 1  t_total    0.014 s   PASS   (CSV idénticos)
+      p2 k=8     6 hilos rep 1  t_total    0.004 s   PASS   (CSV idénticos)
+      p2 k=8    12 hilos rep 1  t_total    0.002 s   PASS   (CSV idénticos)
+      p2 k=8    24 hilos rep 1  t_total    0.002 s   PASS   (CSV idénticos)
+      p2 k=16    1 hilos rep 1  t_total    0.009 s   PASS   (CSV idénticos)
+      p2 k=16    6 hilos rep 1  t_total    0.002 s   PASS   (CSV idénticos)
+      p2 k=16   12 hilos rep 1  t_total    0.002 s   PASS   (CSV idénticos)
+      p2 k=16   24 hilos rep 1  t_total    0.002 s   PASS   (CSV idénticos)
+      p2 k=32    1 hilos rep 1  t_total    0.007 s   PASS   (CSV idénticos)
+      p2 k=32    6 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2 k=32   12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2 k=32   24 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2 k=64    1 hilos rep 1  t_total    0.007 s   PASS   (CSV idénticos)
+      p2 k=64    6 hilos rep 1  t_total    0.002 s   PASS   (CSV idénticos)
+      p2 k=64   12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2 k=64   24 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+    results/sensibilidad/datos/uniforme_40000.csv: serial          t_total    0.347 s   label_hash b8cbe263979cdc65  count_hash f2a6f77bea5d22a7
+      p1         1 hilos rep 1  t_total    0.347 s   PASS
+      p1         6 hilos rep 1  t_total    0.060 s   PASS
+      p1        12 hilos rep 1  t_total    0.053 s   PASS
+      p1        24 hilos rep 1  t_total    0.044 s   PASS
+      p2 k=2     1 hilos rep 1  t_total    0.183 s   PASS
+      p2 k=2     6 hilos rep 1  t_total    0.093 s   PASS
+      p2 k=2    12 hilos rep 1  t_total    0.093 s   PASS
+      p2 k=2    24 hilos rep 1  t_total    0.094 s   PASS
+      p2 k=4     1 hilos rep 1  t_total    0.097 s   PASS
+      p2 k=4     6 hilos rep 1  t_total    0.025 s   PASS
+      p2 k=4    12 hilos rep 1  t_total    0.025 s   PASS
+      p2 k=4    24 hilos rep 1  t_total    0.025 s   PASS
+      p2 k=8     1 hilos rep 1  t_total    0.054 s   PASS
+      p2 k=8     6 hilos rep 1  t_total    0.014 s   PASS
+      p2 k=8    12 hilos rep 1  t_total    0.008 s   PASS
+      p2 k=8    24 hilos rep 1  t_total    0.008 s   PASS
+      p2 k=16    1 hilos rep 1  t_total    0.032 s   PASS
+      p2 k=16    6 hilos rep 1  t_total    0.006 s   PASS
+      p2 k=16   12 hilos rep 1  t_total    0.005 s   PASS
+      p2 k=16   24 hilos rep 1  t_total    0.004 s   PASS
+      p2 k=32    1 hilos rep 1  t_total    0.021 s   PASS
+      p2 k=32    6 hilos rep 1  t_total    0.004 s   PASS
+      p2 k=32   12 hilos rep 1  t_total    0.003 s   PASS
+      p2 k=32   24 hilos rep 1  t_total    0.003 s   PASS
+      p2 k=64    1 hilos rep 1  t_total    0.019 s   PASS
+      p2 k=64    6 hilos rep 1  t_total    0.004 s   PASS
+      p2 k=64   12 hilos rep 1  t_total    0.003 s   PASS
+      p2 k=64   24 hilos rep 1  t_total    0.003 s   PASS
+consistency: PASS (0 corridas con diferencias)

@@ -1,0 +1,216 @@
+== cases: tests/cases, original and reversed row order (classes = expected, counts = numpy twin) ==
+    case         order       n   serial     p1/1     p1/6    p1/12    p1/24
+    A            original    5     PASS     PASS     PASS     PASS     PASS
+    A            reversed    5     PASS     PASS     PASS     PASS     PASS
+    B            original    7     PASS     PASS     PASS     PASS     PASS
+    B            reversed    7     PASS     PASS     PASS     PASS     PASS
+    C            original   12     PASS     PASS     PASS     PASS     PASS
+    C            reversed   12     PASS     PASS     PASS     PASS     PASS
+    C_neg        original   12     PASS     PASS     PASS     PASS     PASS
+    C_neg        reversed   12     PASS     PASS     PASS     PASS     PASS
+    C_mixed      original   12     PASS     PASS     PASS     PASS     PASS
+    C_mixed      reversed   12     PASS     PASS     PASS     PASS     PASS
+    C_big        original   12     PASS     PASS     PASS     PASS     PASS
+    C_big        reversed   12     PASS     PASS     PASS     PASS     PASS
+    C_outside    original   12     PASS     PASS     PASS     PASS     PASS
+    C_outside    reversed   12     PASS     PASS     PASS     PASS     PASS
+    D            original    4     PASS     PASS     PASS     PASS     PASS
+    D            reversed    4     PASS     PASS     PASS     PASS     PASS
+    E            original   20     PASS     PASS     PASS     PASS     PASS
+    E            reversed   20     PASS     PASS     PASS     PASS     PASS
+    F            original   12     PASS     PASS     PASS     PASS     PASS
+    F            reversed   12     PASS     PASS     PASS     PASS     PASS
+    G1           original    1     PASS     PASS     PASS     PASS     PASS
+    G1           reversed    1     PASS     PASS     PASS     PASS     PASS
+    G2           original    1     PASS     PASS     PASS     PASS     PASS
+    G2           reversed    1     PASS     PASS     PASS     PASS     PASS
+    H_narrow     original   11     PASS     PASS     PASS     PASS     PASS
+    H_narrow     reversed   11     PASS     PASS     PASS     PASS     PASS
+    H_narrow2d   original   36     PASS     PASS     PASS     PASS     PASS
+    H_narrow2d   reversed   36     PASS     PASS     PASS     PASS     PASS
+cases: PASS (0 failing runs out of 140)
+
+== errors: invalid inputs and arguments -> expected exit code and a message on stderr ==
+    case                             expected  got  status  stderr (first line)
+    empty file                              2    2  PASS    input.csv: no data rows
+    blank lines only                        2    2  PASS    input.csv: no data rows
+    header row                              2    2  PASS    input.csv:1: column 1: 'x' is not a number
+    1 column                                2    2  PASS    input.csv:1: expected 2 comma-separated values, found 1
+    3 columns                               2    2  PASS    input.csv:1: expected 2 comma-separated values, found 3
+    empty value                             2    2  PASS    input.csv:1: column 2: empty value
+    non-numeric                             2    2  PASS    input.csv:1: column 2: 'abc' is not a number
+    trailing characters                     2    2  PASS    input.csv:1: column 2: '0.25x' is not a number
+    nan coordinate                          2    2  PASS    input.csv:1: column 1: 'nan' is not a finite number
+    inf coordinate                          2    2  PASS    input.csv:1: column 2: 'inf' is not a finite number
+    coordinate 1e101                        2    2  PASS    input.csv:1: column 1: '1e101' is outside the supported domain |value| <= 1e100
+    coordinate -1e101                       2    2  PASS    input.csv:1: column 2: '-1e101' is outside the supported domain |value| <= 1e100
+    missing input file                      2    2  PASS    input.csv: cannot open input file: No such file or directory
+    eps 0                                   1    1  PASS    dbscan: --eps must satisfy 1e-100 <= eps <= 1e100 (supported domain) (see dbscan --help)
+    eps -1                                  1    1  PASS    dbscan: --eps must satisfy 1e-100 <= eps <= 1e100 (supported domain) (see dbscan --help)
+    eps nan                                 1    1  PASS    dbscan: --eps: 'nan' is not a finite number (see dbscan --help)
+    eps 1e-101                              1    1  PASS    dbscan: --eps must satisfy 1e-100 <= eps <= 1e100 (supported domain) (see dbscan --help)
+    eps 1e101                               1    1  PASS    dbscan: --eps must satisfy 1e-100 <= eps <= 1e100 (supported domain) (see dbscan --help)
+    eps not a number                        1    1  PASS    dbscan: --eps: '0.5x' is not a finite number (see dbscan --help)
+    min-samples 0                           1    1  PASS    dbscan: --min-samples must be an integer >= 1 (see dbscan --help)
+    min-samples -3                          1    1  PASS    dbscan: --min-samples must be an integer >= 1 (see dbscan --help)
+    min-samples 2.5                         1    1  PASS    dbscan: --min-samples: '2.5' is not an integer (see dbscan --help)
+    threads 0                               1    1  PASS    dbscan: --threads must be an integer >= 1 (see dbscan --help)
+    k 0 (mode p2)                           1    1  PASS    dbscan: --k must be an integer >= 1 (see dbscan --help)
+    --k with serial                         1    1  PASS    dbscan: --k is only valid with --mode p2 (see dbscan --help)
+    --threads 2 with serial                 1    1  PASS    dbscan: --mode serial runs on one thread: --threads must be 1 or omitted (see dbscan --help)
+    p2 without --k                          1    1  PASS    dbscan: --mode p2 requires --k (see dbscan --help)
+    unknown flag                            1    1  PASS    dbscan: unknown option '--foo' (see dbscan --help)
+    missing value (last)                    1    1  PASS    dbscan: missing value for --eps (see dbscan --help)
+    missing value (next flag)               1    1  PASS    dbscan: missing value for --input (see dbscan --help)
+    repeated flag                           1    1  PASS    dbscan: option --eps given twice (see dbscan --help)
+    missing --input                         1    1  PASS    dbscan: --input is required (see dbscan --help)
+    missing --mode                          1    1  PASS    dbscan: --mode is required (see dbscan --help)
+    invalid mode                            1    1  PASS    dbscan: --mode must be serial, p1 or p2, not 'p3' (see dbscan --help)
+    output = input file                     1    1  PASS    dbscan: an output file cannot be the input file (see dbscan --help)
+    p1: threads 0                           1    1  PASS    dbscan: --threads must be an integer >= 1 (see dbscan --help)
+    p1: threads -4                          1    1  PASS    dbscan: --threads must be an integer >= 1 (see dbscan --help)
+    p1: threads 2.5                         1    1  PASS    dbscan: --threads: '2.5' is not an integer (see dbscan --help)
+    p1: --k                                 1    1  PASS    dbscan: --k is only valid with --mode p2 (see dbscan --help)
+    mode p2 (not integrated yet)            3    3  PASS    dbscan: --mode p2 todavía no está integrado en esta versión (serial y p1 sí)
+    unwritable --output                     4    4  PASS    dbscan: cannot write ./no_such_dir/out.csv: No such file or directory
+    unwritable --detailed-output            4    4  PASS    dbscan: cannot write ./no_such_dir/out.csv: No such file or directory
+    accepted: |coordinate| = 1e100          0    0  PASS    dbscan serial (1 hilos): n=2 eps=0.03 min_samples=10 -> core1=0 core2=0 ruido=2 | lectura 0.000 s, paso1 0.000 s, paso2 0.000 s, total 0.000 s
+    accepted: eps 1e-100                    0    0  PASS    dbscan serial (1 hilos): n=2 eps=1e-100 min_samples=10 -> core1=0 core2=0 ruido=2 | lectura 0.000 s, paso1 0.000 s, paso2 0.000 s, total 0.000 s
+    accepted: eps 1e100                     0    0  PASS    dbscan serial (1 hilos): n=2 eps=1e+100 min_samples=10 -> core1=0 core2=0 ruido=2 | lectura 0.000 s, paso1 0.000 s, paso2 0.000 s, total 0.000 s
+    accepted: p1 --threads 3                0    0  PASS    dbscan p1 (3 hilos): n=2 eps=0.03 min_samples=10 -> core1=0 core2=0 ruido=2 | lectura 0.000 s, paso1 0.000 s, paso2 0.000 s, total 0.000 s
+    accepted: p1 without --threads          0    0  PASS    dbscan p1 (12 hilos): n=2 eps=0.03 min_samples=10 -> core1=0 core2=0 ruido=2 | lectura 0.000 s, paso1 0.000 s, paso2 0.000 s, total 0.000 s
+errors: PASS (0 failing out of 47)
+
+== checksums: data/SHA256SUMS ==
+    OK        data/120000_data.csv
+    OK        data/140000_data.csv
+    OK        data/160000_data.csv
+    OK        data/180000_data.csv
+    OK        data/200000_data.csv
+    OK        data/20000_data.csv
+    OK        data/40000_data.csv
+    OK        data/4000_data.csv
+    OK        data/80000_data.csv
+    datasets present: [4000, 20000, 40000, 80000, 120000, 140000, 160000, 180000, 200000]; not generated yet: none
+checksums: PASS
+
+== oracle: data/4000_data.csv (eps=0.03, min_samples=10) ==
+C++: dbscan serial (1 hilos): n=4000 eps=0.03 min_samples=10 -> core1=3829 core2=112 ruido=59 | lectura 0.000 s, paso1 0.003 s, paso2 0.000 s, total 0.004 s
+(a) output format: OK (detailed output, binary output, np.loadtxt and METRICS; 4000 rows; columns 1-2 byte-identical to the input; binary in {0,1}; class in {0,1,2})
+(b) numpy IEEE twin: 0 class differences, 0 count differences -> OK
+(c) scikit-learn DBSCAN(eps=0.03, min_samples=10): 0 3-class mismatches, 0 binary mismatches
+    confusion matrix (rows: C++ class, columns: scikit-learn class)
+               sk noise   sk core1   sk core2
+    C++ noise          59          0          0
+    C++ core1           0       3829          0
+    C++ core2           0          0        112
+(d) variants: mismatches against scikit-learn (3-class, binary) and against C++ (3-class)
+    IEEE squared (= C++)   sklearn 3-class      0   sklearn binary      0   C++ 3-class      0
+    IEEE sqrt              sklearn 3-class      0   sklearn binary      0   C++ 3-class      0
+    exact decimal          sklearn 3-class      5   sklearn binary      2   C++ 3-class      5
+oracle: PASS
+
+== oracle: data/20000_data.csv (eps=0.03, min_samples=10) ==
+C++: dbscan serial (1 hilos): n=20000 eps=0.03 min_samples=10 -> core1=19866 core2=89 ruido=45 | lectura 0.002 s, paso1 0.087 s, paso2 0.001 s, total 0.088 s
+(a) output format: OK (detailed output, binary output, np.loadtxt and METRICS; 20000 rows; columns 1-2 byte-identical to the input; binary in {0,1}; class in {0,1,2})
+(b) numpy IEEE twin: 0 class differences, 0 count differences -> OK
+(c) scikit-learn DBSCAN(eps=0.03, min_samples=10): 0 3-class mismatches, 0 binary mismatches
+    confusion matrix (rows: C++ class, columns: scikit-learn class)
+               sk noise   sk core1   sk core2
+    C++ noise          45          0          0
+    C++ core1           0      19866          0
+    C++ core2           0          0         89
+(d) variants: mismatches against scikit-learn (3-class, binary) and against C++ (3-class)
+    IEEE squared (= C++)   sklearn 3-class      0   sklearn binary      0   C++ 3-class      0
+    IEEE sqrt              sklearn 3-class      0   sklearn binary      0   C++ 3-class      0
+    exact decimal          sklearn 3-class      1   sklearn binary      0   C++ 3-class      1
+oracle: PASS
+
+== consistency: P1 con 1, 6, 12, 24 hilos (x1) contra serial ==
+    data/4000_data.csv: serial          t_total    0.004 s   label_hash f4f5f8bb42f1b83c  count_hash a56eaa310e975371
+      p1   1 hilos rep 1  t_total    0.004 s   PASS   (CSV idénticos)
+      p1   6 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p1  12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p1  24 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+    data/20000_data.csv: serial          t_total    0.088 s   label_hash 35e64851010283cf  count_hash 87ae511821cc2727
+      p1   1 hilos rep 1  t_total    0.087 s   PASS   (CSV idénticos)
+      p1   6 hilos rep 1  t_total    0.015 s   PASS   (CSV idénticos)
+      p1  12 hilos rep 1  t_total    0.010 s   PASS   (CSV idénticos)
+      p1  24 hilos rep 1  t_total    0.010 s   PASS   (CSV idénticos)
+    data/40000_data.csv: serial          t_total    0.347 s   label_hash d9cd37edf20b1016  count_hash 9686fdc54323e395
+      p1   1 hilos rep 1  t_total    0.348 s   PASS
+      p1   6 hilos rep 1  t_total    0.060 s   PASS
+      p1  12 hilos rep 1  t_total    0.042 s   PASS
+      p1  24 hilos rep 1  t_total    0.042 s   PASS
+    data/80000_data.csv: serial          t_total    1.389 s   label_hash 77915b8ef424d612  count_hash 7bc9dca94074be67
+      p1   1 hilos rep 1  t_total    1.386 s   PASS
+      p1   6 hilos rep 1  t_total    0.238 s   PASS
+      p1  12 hilos rep 1  t_total    0.162 s   PASS
+      p1  24 hilos rep 1  t_total    0.162 s   PASS
+    data/120000_data.csv: serial          t_total    3.125 s   label_hash 496ce12c02b572e3  count_hash 0b638d5538693451
+      p1   1 hilos rep 1  t_total    3.125 s   PASS
+      p1   6 hilos rep 1  t_total    0.534 s   PASS
+      p1  12 hilos rep 1  t_total    0.363 s   PASS
+      p1  24 hilos rep 1  t_total    0.366 s   PASS
+    data/140000_data.csv: serial          t_total    4.246 s   label_hash 59c4e666180874dd  count_hash 24962a4a141b54f8
+      p1   1 hilos rep 1  t_total    4.252 s   PASS
+      p1   6 hilos rep 1  t_total    0.727 s   PASS
+      p1  12 hilos rep 1  t_total    0.485 s   PASS
+      p1  24 hilos rep 1  t_total    0.490 s   PASS
+    data/160000_data.csv: serial          t_total    5.552 s   label_hash 56182804d776ed5f  count_hash 8ff42be7d5ab967f
+      p1   1 hilos rep 1  t_total    5.549 s   PASS
+      p1   6 hilos rep 1  t_total    0.948 s   PASS
+      p1  12 hilos rep 1  t_total    0.626 s   PASS
+      p1  24 hilos rep 1  t_total    0.631 s   PASS
+    data/180000_data.csv: serial          t_total    7.027 s   label_hash dec3fa3398f5b130  count_hash 3a6fdae36710bb05
+      p1   1 hilos rep 1  t_total    7.024 s   PASS
+      p1   6 hilos rep 1  t_total    1.200 s   PASS
+      p1  12 hilos rep 1  t_total    0.794 s   PASS
+      p1  24 hilos rep 1  t_total    0.792 s   PASS
+    data/200000_data.csv: serial          t_total    8.672 s   label_hash 5e96964b762d458b  count_hash 64aa7f62aaab4893
+      p1   1 hilos rep 1  t_total    8.714 s   PASS
+      p1   6 hilos rep 1  t_total    1.481 s   PASS
+      p1  12 hilos rep 1  t_total    0.983 s   PASS
+      p1  24 hilos rep 1  t_total    0.983 s   PASS
+consistency: PASS (0 corridas con diferencias)
+
+== notebook: working copy executed headless on the serial output for N = 4000 ==
+== checksums: data/SHA256SUMS ==
+    OK        data/120000_data.csv
+    OK        data/140000_data.csv
+    OK        data/160000_data.csv
+    OK        data/180000_data.csv
+    OK        data/200000_data.csv
+    OK        data/20000_data.csv
+    OK        data/40000_data.csv
+    OK        data/4000_data.csv
+    OK        data/80000_data.csv
+    datasets present: [4000, 20000, 40000, 80000, 120000, 140000, 160000, 180000, 200000]; not generated yet: none
+checksums: PASS
+    wrote results/viz/4000_results.csv and results/viz/4000_detailed.csv
+    executed copy saved to results/viz/DBSCAN_noise_equipo.executed.ipynb (local artifact)
+    C++-results cell (C1): 1 image output(s)
+    cell T2: oracle_report returned 'PASS'
+== checksums: data/SHA256SUMS ==
+    OK        data/120000_data.csv
+    OK        data/140000_data.csv
+    OK        data/160000_data.csv
+    OK        data/180000_data.csv
+    OK        data/200000_data.csv
+    OK        data/20000_data.csv
+    OK        data/40000_data.csv
+    OK        data/4000_data.csv
+    OK        data/80000_data.csv
+    datasets present: [4000, 20000, 40000, 80000, 120000, 140000, 160000, 180000, 200000]; not generated yet: none
+checksums: PASS
+notebook: PASS
+
+== summary ==
+    cases (serial+p1)  PASS
+    errors             PASS
+    checksums          PASS
+    oracle 4000        PASS
+    oracle 20000       PASS
+    consistency p1     PASS
+    notebook           PASS
+all: PASS

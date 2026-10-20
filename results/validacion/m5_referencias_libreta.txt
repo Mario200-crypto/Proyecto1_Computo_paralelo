@@ -1,0 +1,10 @@
+Etiquetas binarias del programa (p2, k=64, 12 hilos; idénticas a serial) contra data/reference/<N>_sklearn_binary.csv (libreta, celda T1)
+  N=  4000: 4000 puntos, diferencias con scikit-learn = 0, ruido nuestro 59 / sklearn 59
+  N= 20000: 20000 puntos, diferencias con scikit-learn = 0, ruido nuestro 45 / sklearn 45
+  N= 40000: 40000 puntos, diferencias con scikit-learn = 0, ruido nuestro 33 / sklearn 33
+  N= 80000: 80000 puntos, diferencias con scikit-learn = 0, ruido nuestro 34 / sklearn 34
+  N=120000: 120000 puntos, diferencias con scikit-learn = 0, ruido nuestro 38 / sklearn 38
+  N=140000: 140000 puntos, diferencias con scikit-learn = 0, ruido nuestro 35 / sklearn 35
+  N=160000: 160000 puntos, diferencias con scikit-learn = 0, ruido nuestro 28 / sklearn 28
+  N=180000: 180000 puntos, diferencias con scikit-learn = 0, ruido nuestro 27 / sklearn 27
+  N=200000: 200000 puntos, diferencias con scikit-learn = 0, ruido nuestro 21 / sklearn 21

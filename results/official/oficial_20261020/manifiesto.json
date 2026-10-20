@@ -1,0 +1,124 @@
+{
+  "run_id": "oficial_20261020",
+  "tipo": "oficial",
+  "creado_utc": "2026-10-20T05:30:42Z",
+  "congelado": {
+    "plan": {
+      "tamanos": [
+        20000,
+        40000,
+        80000,
+        120000,
+        140000,
+        160000,
+        180000,
+        200000
+      ],
+      "hilos": [
+        1,
+        6,
+        12,
+        24
+      ],
+      "k": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64
+      ],
+      "repeticiones": 10,
+      "semilla": 20261020,
+      "total": 2320,
+      "por_modo": {
+        "serial": 80,
+        "p1": 320,
+        "p2": 1920
+      },
+      "eps": "0.03",
+      "min_samples": 10
+    },
+    "git_commit": "9f558024ea665d0336114e4f320ddcc19a5dc858",
+    "sha256_codigo": {
+      "src/dbscan.cpp": "e79d3fbf4d509c2ec2c970322b81b4e3f7c25c9e893b278e36f37cb3de13f0be",
+      "Makefile": "56f200d5ba6037e1e0a742ff3eae2f3585592bf62ec2ce50f1330e8415866d3b",
+      "scripts/run_experiments.py": "6dcb3a487fec975d08b0e6d486d32fc7a713eb27cfa6564d69735b6fc10e8566"
+    },
+    "sha256_binario": "4a9900bc4fe89943d1a5f890c8d58ce784109ad2afb3dc6414df7aa6cd9953cd",
+    "sha256_datos": {
+      "20000": "c8992228d010bc7d2c94a8913ccf7100ec7e390fe2fff16fc935c0ba11807086",
+      "40000": "424778755921579361f8975a4416ea66ed36ed56d5c467e88fd1017e6cf36cdd",
+      "80000": "de04236a2ba9ac73add67680fd30f835fb5f6574d672514858b94ef45a29028b",
+      "120000": "86360e884c2cd4e6edc73b633309c4604efdbc6c89f164921828b5e255f93214",
+      "140000": "8794928170b46eb4688d082b114cc74cb8b6b8bfd1b3c1b507ed6658870306ed",
+      "160000": "aee0116896468fe2f0b6dc0ae013d9fc78eb34da5a891350e54fa0f17a974571",
+      "180000": "fcb27ef0625a5933fb21c4a393e0a6b2be3ad74a4e19a4e8dc02db7f78c21b30",
+      "200000": "cc34e37ce7a92b67f350c4cde8d3258e8418f8812dde4a4c8ead2041a4cc9fb6"
+    }
+  },
+  "procedencia": {
+    "git_commit": "9f558024ea665d0336114e4f320ddcc19a5dc858",
+    "git_branch": "gabo",
+    "codigo_sin_commit": "?? Makefile\n?? scripts/run_experiments.py",
+    "sha256_codigo": {
+      "src/dbscan.cpp": "e79d3fbf4d509c2ec2c970322b81b4e3f7c25c9e893b278e36f37cb3de13f0be",
+      "Makefile": "56f200d5ba6037e1e0a742ff3eae2f3585592bf62ec2ce50f1330e8415866d3b",
+      "scripts/run_experiments.py": "6dcb3a487fec975d08b0e6d486d32fc7a713eb27cfa6564d69735b6fc10e8566"
+    },
+    "sha256_binario": "4a9900bc4fe89943d1a5f890c8d58ce784109ad2afb3dc6414df7aa6cd9953cd",
+    "sha256_datos": {
+      "20000": "c8992228d010bc7d2c94a8913ccf7100ec7e390fe2fff16fc935c0ba11807086",
+      "40000": "424778755921579361f8975a4416ea66ed36ed56d5c467e88fd1017e6cf36cdd",
+      "80000": "de04236a2ba9ac73add67680fd30f835fb5f6574d672514858b94ef45a29028b",
+      "120000": "86360e884c2cd4e6edc73b633309c4604efdbc6c89f164921828b5e255f93214",
+      "140000": "8794928170b46eb4688d082b114cc74cb8b6b8bfd1b3c1b507ed6658870306ed",
+      "160000": "aee0116896468fe2f0b6dc0ae013d9fc78eb34da5a891350e54fa0f17a974571",
+      "180000": "fcb27ef0625a5933fb21c4a393e0a6b2be3ad74a4e19a4e8dc02db7f78c21b30",
+      "200000": "cc34e37ce7a92b67f350c4cde8d3258e8418f8812dde4a4c8ead2041a4cc9fb6"
+    },
+    "build_info": "compiler: Apple clang version 21.0.0 (clang-2100.1.1.101)\nCXX: clang++\nCXXFLAGS: -std=c++17 -O3 -Wall -Wextra -ffp-contract=off\nOMPFLAGS: -Xpreprocessor -fopenmp -I/opt/homebrew/opt/libomp/include\nLDLIBS: -L/opt/homebrew/opt/libomp/lib -lomp\nuname: Darwin GaboMac 25.5.0 Darwin Kernel Version 25.5.0: Tue Jun  9 22:28:34 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T6041 arm64\ndate_utc: 2026-10-20T05:28:03Z\n",
+    "compilador": [
+      "Apple clang version 21.0.0 (clang-2100.1.1.101)"
+    ]
+  },
+  "maquina": {
+    "modelo": "Mac16,8",
+    "cpu": "Apple M4 Pro",
+    "nucleos_fisicos": "12",
+    "nucleos_logicos": "12",
+    "nucleos_rendimiento": "8",
+    "nucleos_eficiencia": "4",
+    "memoria_bytes": "25769803776",
+    "sistema": "ProductName:\t\tmacOS; ProductVersion:\t\t26.5.2; BuildVersion:\t\t25F84",
+    "uname": {
+      "system": "Darwin",
+      "node": "GaboMac",
+      "release": "25.5.0",
+      "version": "Darwin Kernel Version 25.5.0: Tue Jun  9 22:28:34 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T6041",
+      "machine": "arm64",
+      "processor": "arm"
+    },
+    "python": "3.11.9"
+  },
+  "condiciones_inicio": {
+    "fecha_utc": "2026-10-20T05:30:42Z",
+    "energia": [
+      "Now drawing from 'AC Power'"
+    ],
+    "carga_1_5_15": [
+      1.88623046875,
+      3.02587890625,
+      2.95947265625
+    ],
+    "procesos_con_mas_cpu": [
+      "99.6 /usr/sbin/BTLEServer",
+      "19.0 /Applications/Visual Studio Code.app/Contents/Frameworks/Code Helper (Renderer).app/Contents/MacOS/Code Helper (Renderer)",
+      "13.8 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer",
+      "11.6 /Users/gabo/Developer/ITAM/Paralelo/ProyectoApertura/Proyecto1_Computo_paralelo/.venv/bin/python",
+      "8.7 /Users/gabo/.vscode/extensions/anthropic.claude-code-2.1.301-darwin-arm64/resources/native-binary/claude"
+    ],
+    "variables_omp_ignoradas": []
+  },
+  "metodo": "un proceso por corrida, una corrida a la vez, orden barajado por repetición; tiempo oficial = t_total (omp_get_wtime en C++, sin lectura/escritura de CSV)"
+}
