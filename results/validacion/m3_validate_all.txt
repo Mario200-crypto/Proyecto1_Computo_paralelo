@@ -1,0 +1,599 @@
+== cases: tests/cases, original and reversed row order (classes = expected, counts = numpy twin) ==
+    case         order       n  serial (ok/total)      p1 (ok/total)      p2 (ok/total)  p2spatial (ok/total)
+    A            original    5                1/1                4/4              40/40              40/40
+    A            reversed    5                1/1                4/4              40/40              40/40
+    B            original    7                1/1                4/4              40/40              40/40
+    B            reversed    7                1/1                4/4              40/40              40/40
+    C            original   12                1/1                4/4              40/40              40/40
+    C            reversed   12                1/1                4/4              40/40              40/40
+    C_neg        original   12                1/1                4/4              40/40              40/40
+    C_neg        reversed   12                1/1                4/4              40/40              40/40
+    C_mixed      original   12                1/1                4/4              40/40              40/40
+    C_mixed      reversed   12                1/1                4/4              40/40              40/40
+    C_big        original   12                1/1                4/4              40/40              40/40
+    C_big        reversed   12                1/1                4/4              40/40              40/40
+    C_outside    original   12                1/1                4/4              40/40              40/40
+    C_outside    reversed   12                1/1                4/4              40/40              40/40
+    D            original    4                1/1                4/4              40/40              40/40
+    D            reversed    4                1/1                4/4              40/40              40/40
+    E            original   20                1/1                4/4              40/40              40/40
+    E            reversed   20                1/1                4/4              40/40              40/40
+    F            original   12                1/1                4/4              40/40              40/40
+    F            reversed   12                1/1                4/4              40/40              40/40
+    G1           original    1                1/1                4/4              40/40              40/40
+    G1           reversed    1                1/1                4/4              40/40              40/40
+    G2           original    1                1/1                4/4              40/40              40/40
+    G2           reversed    1                1/1                4/4              40/40              40/40
+    H_narrow     original   11                1/1                4/4              40/40              40/40
+    H_narrow     reversed   11                1/1                4/4              40/40              40/40
+    H_narrow2d   original   36                1/1                4/4              40/40              40/40
+    H_narrow2d   reversed   36                1/1                4/4              40/40              40/40
+cases: PASS (0 failing runs out of 2380)
+
+== errors: invalid inputs and arguments -> expected exit code and a message on stderr ==
+    case                             expected  got  status  stderr (first line)
+    empty file                              2    2  PASS    input.csv: no data rows
+    blank lines only                        2    2  PASS    input.csv: no data rows
+    header row                              2    2  PASS    input.csv:1: column 1: 'x' is not a number
+    1 column                                2    2  PASS    input.csv:1: expected 2 comma-separated values, found 1
+    3 columns                               2    2  PASS    input.csv:1: expected 2 comma-separated values, found 3
+    empty value                             2    2  PASS    input.csv:1: column 2: empty value
+    non-numeric                             2    2  PASS    input.csv:1: column 2: 'abc' is not a number
+    trailing characters                     2    2  PASS    input.csv:1: column 2: '0.25x' is not a number
+    nan coordinate                          2    2  PASS    input.csv:1: column 1: 'nan' is not a finite number
+    inf coordinate                          2    2  PASS    input.csv:1: column 2: 'inf' is not a finite number
+    coordinate 1e101                        2    2  PASS    input.csv:1: column 1: '1e101' is outside the supported domain |value| <= 1e100
+    coordinate -1e101                       2    2  PASS    input.csv:1: column 2: '-1e101' is outside the supported domain |value| <= 1e100
+    missing input file                      2    2  PASS    input.csv: cannot open input file: No such file or directory
+    eps 0                                   1    1  PASS    dbscan: --eps must satisfy 1e-100 <= eps <= 1e100 (supported domain) (see dbscan --help)
+    eps -1                                  1    1  PASS    dbscan: --eps must satisfy 1e-100 <= eps <= 1e100 (supported domain) (see dbscan --help)
+    eps nan                                 1    1  PASS    dbscan: --eps: 'nan' is not a finite number (see dbscan --help)
+    eps 1e-101                              1    1  PASS    dbscan: --eps must satisfy 1e-100 <= eps <= 1e100 (supported domain) (see dbscan --help)
+    eps 1e101                               1    1  PASS    dbscan: --eps must satisfy 1e-100 <= eps <= 1e100 (supported domain) (see dbscan --help)
+    eps not a number                        1    1  PASS    dbscan: --eps: '0.5x' is not a finite number (see dbscan --help)
+    min-samples 0                           1    1  PASS    dbscan: --min-samples must be an integer >= 1 (see dbscan --help)
+    min-samples -3                          1    1  PASS    dbscan: --min-samples must be an integer >= 1 (see dbscan --help)
+    min-samples 2.5                         1    1  PASS    dbscan: --min-samples: '2.5' is not an integer (see dbscan --help)
+    threads 0                               1    1  PASS    dbscan: --threads must be an integer >= 1 (see dbscan --help)
+    k 0 (mode p2)                           1    1  PASS    dbscan: --k must be an integer >= 1 (see dbscan --help)
+    --k with serial                         1    1  PASS    dbscan: --k is only valid with --mode p2 or p2spatial (see dbscan --help)
+    --threads 2 with serial                 1    1  PASS    dbscan: --mode serial runs on one thread: --threads must be 1 or omitted (see dbscan --help)
+    p2 without --k                          1    1  PASS    dbscan: --mode p2 requires --k (see dbscan --help)
+    unknown flag                            1    1  PASS    dbscan: unknown option '--foo' (see dbscan --help)
+    missing value (last)                    1    1  PASS    dbscan: missing value for --eps (see dbscan --help)
+    missing value (next flag)               1    1  PASS    dbscan: missing value for --input (see dbscan --help)
+    repeated flag                           1    1  PASS    dbscan: option --eps given twice (see dbscan --help)
+    missing --input                         1    1  PASS    dbscan: --input is required (see dbscan --help)
+    missing --mode                          1    1  PASS    dbscan: --mode is required (see dbscan --help)
+    invalid mode                            1    1  PASS    dbscan: --mode must be serial, p1, p2 or p2spatial, not 'p3' (see dbscan --help)
+    output = input file                     1    1  PASS    dbscan: an output file cannot be the input file (see dbscan --help)
+    p1: threads 0                           1    1  PASS    dbscan: --threads must be an integer >= 1 (see dbscan --help)
+    p1: threads -4                          1    1  PASS    dbscan: --threads must be an integer >= 1 (see dbscan --help)
+    p1: threads 2.5                         1    1  PASS    dbscan: --threads: '2.5' is not an integer (see dbscan --help)
+    p1: --k                                 1    1  PASS    dbscan: --k is only valid with --mode p2 or p2spatial (see dbscan --help)
+    p2: k -1                                1    1  PASS    dbscan: --k must be an integer >= 1 (see dbscan --help)
+    p2: k 2.5                               1    1  PASS    dbscan: --k: '2.5' is not an integer (see dbscan --help)
+    p2: threads 0                           1    1  PASS    dbscan: --threads must be an integer >= 1 (see dbscan --help)
+    unwritable --output                     4    4  PASS    dbscan: cannot write ./no_such_dir/out.csv: No such file or directory
+    unwritable --detailed-output            4    4  PASS    dbscan: cannot write ./no_such_dir/out.csv: No such file or directory
+    accepted: |coordinate| = 1e100          0    0  PASS    dbscan serial (1 hilos): n=2 eps=0.03 min_samples=10 -> core1=0 core2=0 ruido=2 | lectura 0.000 s, construcción 0.000 s, paso1 0.000 s, paso2 0.000 s, total 0.000 s
+    accepted: eps 1e-100                    0    0  PASS    dbscan serial (1 hilos): n=2 eps=1e-100 min_samples=10 -> core1=0 core2=0 ruido=2 | lectura 0.000 s, construcción 0.000 s, paso1 0.000 s, paso2 0.000 s, total 0.000 s
+    accepted: eps 1e100                     0    0  PASS    dbscan serial (1 hilos): n=2 eps=1e+100 min_samples=10 -> core1=0 core2=0 ruido=2 | lectura 0.000 s, construcción 0.000 s, paso1 0.000 s, paso2 0.000 s, total 0.000 s
+    accepted: p1 --threads 3                0    0  PASS    dbscan p1 (3 hilos): n=2 eps=0.03 min_samples=10 -> core1=0 core2=0 ruido=2 | lectura 0.000 s, construcción 0.000 s, paso1 0.000 s, paso2 0.000 s, total 0.000 s
+    accepted: p1 without --threads          0    0  PASS    dbscan p1 (12 hilos): n=2 eps=0.03 min_samples=10 -> core1=0 core2=0 ruido=2 | lectura 0.000 s, construcción 0.000 s, paso1 0.000 s, paso2 0.000 s, total 0.000 s
+    accepted: p2 --k 4 --threads 2          0    0  PASS    dbscan p2 (2 hilos, k=4 (2x2 bloques)): n=2 eps=0.03 min_samples=10 -> core1=0 core2=0 ruido=2 | lectura 0.000 s, construcción 0.000 s, paso1 0.000 s, paso2 0.000 s, total 0.000 s
+    accepted: p2 --k 64 (n=2)               0    0  PASS    dbscan p2 (12 hilos, k=64 (8x8 bloques)): n=2 eps=0.03 min_samples=10 -> core1=0 core2=0 ruido=2 | lectura 0.000 s, construcción 0.000 s, paso1 0.000 s, paso2 0.000 s, total 0.000 s
+    p2spatial without --k                   1    1  PASS    dbscan: --mode p2spatial requires --k (see dbscan --help)
+    p2spatial: k 0                          1    1  PASS    dbscan: --k must be an integer >= 1 (see dbscan --help)
+    p2spatial: threads 0                    1    1  PASS    dbscan: --threads must be an integer >= 1 (see dbscan --help)
+    accepted: p2spatial --k 64 (n=2)        0    0  PASS    dbscan p2spatial (12 hilos, k=64 (8x8 regiones)): n=2 eps=0.03 min_samples=10 -> core1=0 core2=0 ruido=2 | lectura 0.000 s, construcción 0.000 s, paso1 0.000 s, paso2 0.000 s, total 0.000 s
+errors: PASS (0 failing out of 55)
+
+== stress: datos difíciles, p1 / p2 / p2spatial (k = 1..64, hilos 1, 12, 24) contra serial ==
+    malla_empates      n= 1681 eps=0.03     ms=10    63/63 PASS  p2spatial k=64:   3.4x menos pares
+    malla_empates      n= 1681 eps=0.03     ms=30    63/63 PASS  p2spatial k=64:   3.4x menos pares
+    malla_empates      n= 1681 eps=0.012    ms=3     63/63 PASS  p2spatial k=64:  10.1x menos pares
+    fronteras_exactas  n=  625 eps=0.03125  ms=3     63/63 PASS  p2spatial k=64:  19.1x menos pares
+    fronteras_exactas  n=  625 eps=0.03125  ms=5     63/63 PASS  p2spatial k=64:  19.1x menos pares
+    fronteras_exactas  n=  625 eps=0.0625   ms=9     63/63 PASS  p2spatial k=64:  19.1x menos pares
+    uniforme           n= 3000 eps=0.03     ms=10    63/63 PASS  p2spatial k=64:  31.7x menos pares
+    uniforme           n= 3000 eps=0.1      ms=5     63/63 PASS  p2spatial k=64:  11.0x menos pares
+    uniforme           n= 3000 eps=0.005    ms=1     63/63 PASS  p2spatial k=64:  54.6x menos pares
+    cumulos            n= 4000 eps=0.03     ms=10    63/63 PASS  p2spatial k=64:   8.4x menos pares
+    cumulos            n= 4000 eps=0.05     ms=25    63/63 PASS  p2spatial k=64:   6.5x menos pares
+    negativos          n= 3000 eps=0.03     ms=10    63/63 PASS  p2spatial k=64:  31.7x menos pares
+    desplazado_1e6     n= 3000 eps=0.03     ms=10    63/63 PASS  p2spatial k=64:  31.2x menos pares
+    desplazado_1e9     n= 3000 eps=0.03     ms=10    63/63 PASS  p2spatial k=64:   1.0x menos pares
+    duplicados         n= 1000 eps=0.03     ms=10    63/63 PASS  p2spatial k=64:   5.1x menos pares
+    duplicados         n= 1000 eps=0.03     ms=401   63/63 PASS  p2spatial k=64:   5.1x menos pares
+    linea_vertical     n= 1000 eps=0.01     ms=4     63/63 PASS  p2spatial k=64:   7.0x menos pares
+    dos_esquinas       n=  600 eps=0.003    ms=5     63/63 PASS  p2spatial k=64:   2.0x menos pares
+    extremos           n=    5 eps=1e+100   ms=1     63/63 PASS  p2spatial k=64:   1.3x menos pares
+    extremos           n=    5 eps=1e-100   ms=1     63/63 PASS  p2spatial k=64:   3.6x menos pares
+    extremos           n=    5 eps=1e+100   ms=2     63/63 PASS  p2spatial k=64:   1.3x menos pares
+stress: PASS
+
+== checksums: data/SHA256SUMS ==
+    OK        data/120000_data.csv
+    OK        data/140000_data.csv
+    OK        data/160000_data.csv
+    OK        data/180000_data.csv
+    OK        data/200000_data.csv
+    OK        data/20000_data.csv
+    OK        data/40000_data.csv
+    OK        data/4000_data.csv
+    OK        data/80000_data.csv
+    datasets present: [4000, 20000, 40000, 80000, 120000, 140000, 160000, 180000, 200000]; not generated yet: none
+checksums: PASS
+
+== oracle: data/4000_data.csv (eps=0.03, min_samples=10) ==
+C++: dbscan serial (1 hilos): n=4000 eps=0.03 min_samples=10 -> core1=3829 core2=112 ruido=59 | lectura 0.000 s, construcción 0.000 s, paso1 0.003 s, paso2 0.000 s, total 0.003 s
+(a) output format: OK (detailed output, binary output, np.loadtxt and METRICS; 4000 rows; columns 1-2 byte-identical to the input; binary in {0,1}; class in {0,1,2})
+(b) numpy IEEE twin: 0 class differences, 0 count differences -> OK
+(c) scikit-learn DBSCAN(eps=0.03, min_samples=10): 0 3-class mismatches, 0 binary mismatches
+    confusion matrix (rows: C++ class, columns: scikit-learn class)
+               sk noise   sk core1   sk core2
+    C++ noise          59          0          0
+    C++ core1           0       3829          0
+    C++ core2           0          0        112
+(d) variants: mismatches against scikit-learn (3-class, binary) and against C++ (3-class)
+    IEEE squared (= C++)   sklearn 3-class      0   sklearn binary      0   C++ 3-class      0
+    IEEE sqrt              sklearn 3-class      0   sklearn binary      0   C++ 3-class      0
+    exact decimal          sklearn 3-class      5   sklearn binary      2   C++ 3-class      5
+oracle: PASS
+
+== oracle: data/20000_data.csv (eps=0.03, min_samples=10) ==
+C++: dbscan serial (1 hilos): n=20000 eps=0.03 min_samples=10 -> core1=19866 core2=89 ruido=45 | lectura 0.002 s, construcción 0.000 s, paso1 0.083 s, paso2 0.001 s, total 0.084 s
+(a) output format: OK (detailed output, binary output, np.loadtxt and METRICS; 20000 rows; columns 1-2 byte-identical to the input; binary in {0,1}; class in {0,1,2})
+(b) numpy IEEE twin: 0 class differences, 0 count differences -> OK
+(c) scikit-learn DBSCAN(eps=0.03, min_samples=10): 0 3-class mismatches, 0 binary mismatches
+    confusion matrix (rows: C++ class, columns: scikit-learn class)
+               sk noise   sk core1   sk core2
+    C++ noise          45          0          0
+    C++ core1           0      19866          0
+    C++ core2           0          0         89
+(d) variants: mismatches against scikit-learn (3-class, binary) and against C++ (3-class)
+    IEEE squared (= C++)   sklearn 3-class      0   sklearn binary      0   C++ 3-class      0
+    IEEE sqrt              sklearn 3-class      0   sklearn binary      0   C++ 3-class      0
+    exact decimal          sklearn 3-class      1   sklearn binary      0   C++ 3-class      1
+oracle: PASS
+
+== consistency: p1 contra serial (4 configuraciones x1 por dataset) ==
+    data/4000_data.csv: serial          t_total    0.003 s   label_hash f4f5f8bb42f1b83c  count_hash a56eaa310e975371
+      p1         1 hilos rep 1  t_total    0.004 s   PASS   (CSV idénticos)
+      p1         6 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p1        12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p1        24 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+    data/20000_data.csv: serial          t_total    0.084 s   label_hash 35e64851010283cf  count_hash 87ae511821cc2727
+      p1         1 hilos rep 1  t_total    0.084 s   PASS   (CSV idénticos)
+      p1         6 hilos rep 1  t_total    0.015 s   PASS   (CSV idénticos)
+      p1        12 hilos rep 1  t_total    0.010 s   PASS   (CSV idénticos)
+      p1        24 hilos rep 1  t_total    0.010 s   PASS   (CSV idénticos)
+    data/40000_data.csv: serial          t_total    0.335 s   label_hash d9cd37edf20b1016  count_hash 9686fdc54323e395
+      p1         1 hilos rep 1  t_total    0.332 s   PASS
+      p1         6 hilos rep 1  t_total    0.060 s   PASS
+      p1        12 hilos rep 1  t_total    0.040 s   PASS
+      p1        24 hilos rep 1  t_total    0.041 s   PASS
+    data/80000_data.csv: serial          t_total    1.342 s   label_hash 77915b8ef424d612  count_hash 7bc9dca94074be67
+      p1         1 hilos rep 1  t_total    1.334 s   PASS
+      p1         6 hilos rep 1  t_total    0.238 s   PASS
+      p1        12 hilos rep 1  t_total    0.160 s   PASS
+      p1        24 hilos rep 1  t_total    0.160 s   PASS
+    data/120000_data.csv: serial          t_total    3.045 s   label_hash 496ce12c02b572e3  count_hash 0b638d5538693451
+      p1         1 hilos rep 1  t_total    3.041 s   PASS
+      p1         6 hilos rep 1  t_total    0.535 s   PASS
+      p1        12 hilos rep 1  t_total    0.362 s   PASS
+      p1        24 hilos rep 1  t_total    0.366 s   PASS
+    data/140000_data.csv: serial          t_total    4.168 s   label_hash 59c4e666180874dd  count_hash 24962a4a141b54f8
+      p1         1 hilos rep 1  t_total    4.151 s   PASS
+      p1         6 hilos rep 1  t_total    0.728 s   PASS
+      p1        12 hilos rep 1  t_total    0.492 s   PASS
+      p1        24 hilos rep 1  t_total    0.493 s   PASS
+    data/160000_data.csv: serial          t_total    5.518 s   label_hash 56182804d776ed5f  count_hash 8ff42be7d5ab967f
+      p1         1 hilos rep 1  t_total    5.484 s   PASS
+      p1         6 hilos rep 1  t_total    0.950 s   PASS
+      p1        12 hilos rep 1  t_total    0.631 s   PASS
+      p1        24 hilos rep 1  t_total    0.630 s   PASS
+    data/180000_data.csv: serial          t_total    6.999 s   label_hash dec3fa3398f5b130  count_hash 3a6fdae36710bb05
+      p1         1 hilos rep 1  t_total    6.984 s   PASS
+      p1         6 hilos rep 1  t_total    1.205 s   PASS
+      p1        12 hilos rep 1  t_total    0.806 s   PASS
+      p1        24 hilos rep 1  t_total    0.843 s   PASS
+    data/200000_data.csv: serial          t_total    8.672 s   label_hash 5e96964b762d458b  count_hash 64aa7f62aaab4893
+      p1         1 hilos rep 1  t_total    8.655 s   PASS
+      p1         6 hilos rep 1  t_total    1.492 s   PASS
+      p1        12 hilos rep 1  t_total    1.016 s   PASS
+      p1        24 hilos rep 1  t_total    1.014 s   PASS
+consistency: PASS (0 corridas con diferencias)
+
+== consistency: p2 contra serial (12 configuraciones x1 por dataset) ==
+    data/4000_data.csv: serial          t_total    0.004 s   label_hash f4f5f8bb42f1b83c  count_hash a56eaa310e975371
+      p2 k=2     6 hilos rep 1  t_total    0.002 s   PASS   (CSV idénticos)
+      p2 k=2    12 hilos rep 1  t_total    0.002 s   PASS   (CSV idénticos)
+      p2 k=4     6 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2 k=4    12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2 k=8     6 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2 k=8    12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2 k=16    6 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2 k=16   12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2 k=32    6 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2 k=32   12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2 k=64    6 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2 k=64   12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+    data/20000_data.csv: serial          t_total    0.088 s   label_hash 35e64851010283cf  count_hash 87ae511821cc2727
+      p2 k=2     6 hilos rep 1  t_total    0.045 s   PASS   (CSV idénticos)
+      p2 k=2    12 hilos rep 1  t_total    0.045 s   PASS   (CSV idénticos)
+      p2 k=4     6 hilos rep 1  t_total    0.024 s   PASS   (CSV idénticos)
+      p2 k=4    12 hilos rep 1  t_total    0.023 s   PASS   (CSV idénticos)
+      p2 k=8     6 hilos rep 1  t_total    0.022 s   PASS   (CSV idénticos)
+      p2 k=8    12 hilos rep 1  t_total    0.012 s   PASS   (CSV idénticos)
+      p2 k=16    6 hilos rep 1  t_total    0.017 s   PASS   (CSV idénticos)
+      p2 k=16   12 hilos rep 1  t_total    0.011 s   PASS   (CSV idénticos)
+      p2 k=32    6 hilos rep 1  t_total    0.017 s   PASS   (CSV idénticos)
+      p2 k=32   12 hilos rep 1  t_total    0.011 s   PASS   (CSV idénticos)
+      p2 k=64    6 hilos rep 1  t_total    0.016 s   PASS   (CSV idénticos)
+      p2 k=64   12 hilos rep 1  t_total    0.011 s   PASS   (CSV idénticos)
+    data/40000_data.csv: serial          t_total    0.348 s   label_hash d9cd37edf20b1016  count_hash 9686fdc54323e395
+      p2 k=2     6 hilos rep 1  t_total    0.176 s   PASS
+      p2 k=2    12 hilos rep 1  t_total    0.176 s   PASS
+      p2 k=4     6 hilos rep 1  t_total    0.089 s   PASS
+      p2 k=4    12 hilos rep 1  t_total    0.089 s   PASS
+      p2 k=8     6 hilos rep 1  t_total    0.089 s   PASS
+      p2 k=8    12 hilos rep 1  t_total    0.045 s   PASS
+      p2 k=16    6 hilos rep 1  t_total    0.067 s   PASS
+      p2 k=16   12 hilos rep 1  t_total    0.050 s   PASS
+      p2 k=32    6 hilos rep 1  t_total    0.067 s   PASS
+      p2 k=32   12 hilos rep 1  t_total    0.045 s   PASS
+      p2 k=64    6 hilos rep 1  t_total    0.062 s   PASS
+      p2 k=64   12 hilos rep 1  t_total    0.043 s   PASS
+    data/80000_data.csv: serial          t_total    1.389 s   label_hash 77915b8ef424d612  count_hash 7bc9dca94074be67
+      p2 k=2     6 hilos rep 1  t_total    0.703 s   PASS
+      p2 k=2    12 hilos rep 1  t_total    0.705 s   PASS
+      p2 k=4     6 hilos rep 1  t_total    0.358 s   PASS
+      p2 k=4    12 hilos rep 1  t_total    0.356 s   PASS
+      p2 k=8     6 hilos rep 1  t_total    0.356 s   PASS
+      p2 k=8    12 hilos rep 1  t_total    0.294 s   PASS
+      p2 k=16    6 hilos rep 1  t_total    0.281 s   PASS
+      p2 k=16   12 hilos rep 1  t_total    0.224 s   PASS
+      p2 k=32    6 hilos rep 1  t_total    0.270 s   PASS
+      p2 k=32   12 hilos rep 1  t_total    0.174 s   PASS
+      p2 k=64    6 hilos rep 1  t_total    0.248 s   PASS
+      p2 k=64   12 hilos rep 1  t_total    0.181 s   PASS
+    data/120000_data.csv: serial          t_total    3.162 s   label_hash 496ce12c02b572e3  count_hash 0b638d5538693451
+      p2 k=2     6 hilos rep 1  t_total    1.591 s   PASS
+      p2 k=2    12 hilos rep 1  t_total    1.593 s   PASS
+      p2 k=4     6 hilos rep 1  t_total    0.803 s   PASS
+      p2 k=4    12 hilos rep 1  t_total    0.801 s   PASS
+      p2 k=8     6 hilos rep 1  t_total    0.798 s   PASS
+      p2 k=8    12 hilos rep 1  t_total    0.427 s   PASS
+      p2 k=16    6 hilos rep 1  t_total    0.632 s   PASS
+      p2 k=16   12 hilos rep 1  t_total    0.478 s   PASS
+      p2 k=32    6 hilos rep 1  t_total    0.605 s   PASS
+      p2 k=32   12 hilos rep 1  t_total    0.380 s   PASS
+      p2 k=64    6 hilos rep 1  t_total    0.553 s   PASS
+      p2 k=64   12 hilos rep 1  t_total    0.386 s   PASS
+    data/140000_data.csv: serial          t_total    4.291 s   label_hash 59c4e666180874dd  count_hash 24962a4a141b54f8
+      p2 k=2     6 hilos rep 1  t_total    2.159 s   PASS
+      p2 k=2    12 hilos rep 1  t_total    2.157 s   PASS
+      p2 k=4     6 hilos rep 1  t_total    1.089 s   PASS
+      p2 k=4    12 hilos rep 1  t_total    1.094 s   PASS
+      p2 k=8     6 hilos rep 1  t_total    1.087 s   PASS
+      p2 k=8    12 hilos rep 1  t_total    0.555 s   PASS
+      p2 k=16    6 hilos rep 1  t_total    0.818 s   PASS
+      p2 k=16   12 hilos rep 1  t_total    0.635 s   PASS
+      p2 k=32    6 hilos rep 1  t_total    0.817 s   PASS
+      p2 k=32   12 hilos rep 1  t_total    0.525 s   PASS
+      p2 k=64    6 hilos rep 1  t_total    0.755 s   PASS
+      p2 k=64   12 hilos rep 1  t_total    0.546 s   PASS
+    data/160000_data.csv: serial          t_total    5.583 s   label_hash 56182804d776ed5f  count_hash 8ff42be7d5ab967f
+      p2 k=2     6 hilos rep 1  t_total    2.815 s   PASS
+      p2 k=2    12 hilos rep 1  t_total    2.820 s   PASS
+      p2 k=4     6 hilos rep 1  t_total    1.421 s   PASS
+      p2 k=4    12 hilos rep 1  t_total    1.421 s   PASS
+      p2 k=8     6 hilos rep 1  t_total    1.418 s   PASS
+      p2 k=8    12 hilos rep 1  t_total    0.749 s   PASS
+      p2 k=16    6 hilos rep 1  t_total    1.068 s   PASS
+      p2 k=16   12 hilos rep 1  t_total    0.828 s   PASS
+      p2 k=32    6 hilos rep 1  t_total    1.071 s   PASS
+      p2 k=32   12 hilos rep 1  t_total    0.763 s   PASS
+      p2 k=64    6 hilos rep 1  t_total    1.004 s   PASS
+      p2 k=64   12 hilos rep 1  t_total    0.712 s   PASS
+    data/180000_data.csv: serial          t_total    7.058 s   label_hash dec3fa3398f5b130  count_hash 3a6fdae36710bb05
+      p2 k=2     6 hilos rep 1  t_total    3.579 s   PASS
+      p2 k=2    12 hilos rep 1  t_total    3.589 s   PASS
+      p2 k=4     6 hilos rep 1  t_total    1.800 s   PASS
+      p2 k=4    12 hilos rep 1  t_total    1.806 s   PASS
+      p2 k=8     6 hilos rep 1  t_total    1.799 s   PASS
+      p2 k=8    12 hilos rep 1  t_total    0.976 s   PASS
+      p2 k=16    6 hilos rep 1  t_total    1.370 s   PASS
+      p2 k=16   12 hilos rep 1  t_total    1.128 s   PASS
+      p2 k=32    6 hilos rep 1  t_total    1.370 s   PASS
+      p2 k=32   12 hilos rep 1  t_total    0.933 s   PASS
+      p2 k=64    6 hilos rep 1  t_total    1.284 s   PASS
+      p2 k=64   12 hilos rep 1  t_total    0.949 s   PASS
+    data/200000_data.csv: serial          t_total    8.751 s   label_hash 5e96964b762d458b  count_hash 64aa7f62aaab4893
+      p2 k=2     6 hilos rep 1  t_total    4.403 s   PASS
+      p2 k=2    12 hilos rep 1  t_total    4.395 s   PASS
+      p2 k=4     6 hilos rep 1  t_total    2.220 s   PASS
+      p2 k=4    12 hilos rep 1  t_total    2.219 s   PASS
+      p2 k=8     6 hilos rep 1  t_total    2.231 s   PASS
+      p2 k=8    12 hilos rep 1  t_total    1.256 s   PASS
+      p2 k=16    6 hilos rep 1  t_total    1.708 s   PASS
+      p2 k=16   12 hilos rep 1  t_total    1.359 s   PASS
+      p2 k=32    6 hilos rep 1  t_total    1.720 s   PASS
+      p2 k=32   12 hilos rep 1  t_total    1.188 s   PASS
+      p2 k=64    6 hilos rep 1  t_total    1.656 s   PASS
+      p2 k=64   12 hilos rep 1  t_total    1.177 s   PASS
+consistency: PASS (0 corridas con diferencias)
+
+== consistency: p2spatial contra serial (24 configuraciones x1 por dataset) ==
+    data/4000_data.csv: serial          t_total    0.004 s   label_hash f4f5f8bb42f1b83c  count_hash a56eaa310e975371
+      p2spatial k=2     1 hilos rep 1  t_total    0.002 s   PASS   (CSV idénticos)
+      p2spatial k=2     6 hilos rep 1  t_total    0.002 s   PASS   (CSV idénticos)
+      p2spatial k=2    12 hilos rep 1  t_total    0.002 s   PASS   (CSV idénticos)
+      p2spatial k=2    24 hilos rep 1  t_total    0.002 s   PASS   (CSV idénticos)
+      p2spatial k=4     1 hilos rep 1  t_total    0.002 s   PASS   (CSV idénticos)
+      p2spatial k=4     6 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=4    12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=4    24 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=8     1 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=8     6 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=8    12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=8    24 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=16    1 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=16    6 hilos rep 1  t_total    0.000 s   PASS   (CSV idénticos)
+      p2spatial k=16   12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=16   24 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=32    1 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=32    6 hilos rep 1  t_total    0.000 s   PASS   (CSV idénticos)
+      p2spatial k=32   12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=32   24 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=64    1 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=64    6 hilos rep 1  t_total    0.000 s   PASS   (CSV idénticos)
+      p2spatial k=64   12 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+      p2spatial k=64   24 hilos rep 1  t_total    0.001 s   PASS   (CSV idénticos)
+    data/20000_data.csv: serial          t_total    0.088 s   label_hash 35e64851010283cf  count_hash 87ae511821cc2727
+      p2spatial k=2     1 hilos rep 1  t_total    0.053 s   PASS   (CSV idénticos)
+      p2spatial k=2     6 hilos rep 1  t_total    0.032 s   PASS   (CSV idénticos)
+      p2spatial k=2    12 hilos rep 1  t_total    0.032 s   PASS   (CSV idénticos)
+      p2spatial k=2    24 hilos rep 1  t_total    0.032 s   PASS   (CSV idénticos)
+      p2spatial k=4     1 hilos rep 1  t_total    0.034 s   PASS   (CSV idénticos)
+      p2spatial k=4     6 hilos rep 1  t_total    0.018 s   PASS   (CSV idénticos)
+      p2spatial k=4    12 hilos rep 1  t_total    0.018 s   PASS   (CSV idénticos)
+      p2spatial k=4    24 hilos rep 1  t_total    0.018 s   PASS   (CSV idénticos)
+      p2spatial k=8     1 hilos rep 1  t_total    0.023 s   PASS   (CSV idénticos)
+      p2spatial k=8     6 hilos rep 1  t_total    0.008 s   PASS   (CSV idénticos)
+      p2spatial k=8    12 hilos rep 1  t_total    0.008 s   PASS   (CSV idénticos)
+      p2spatial k=8    24 hilos rep 1  t_total    0.009 s   PASS   (CSV idénticos)
+      p2spatial k=16    1 hilos rep 1  t_total    0.019 s   PASS   (CSV idénticos)
+      p2spatial k=16    6 hilos rep 1  t_total    0.007 s   PASS   (CSV idénticos)
+      p2spatial k=16   12 hilos rep 1  t_total    0.007 s   PASS   (CSV idénticos)
+      p2spatial k=16   24 hilos rep 1  t_total    0.007 s   PASS   (CSV idénticos)
+      p2spatial k=32    1 hilos rep 1  t_total    0.016 s   PASS   (CSV idénticos)
+      p2spatial k=32    6 hilos rep 1  t_total    0.004 s   PASS   (CSV idénticos)
+      p2spatial k=32   12 hilos rep 1  t_total    0.003 s   PASS   (CSV idénticos)
+      p2spatial k=32   24 hilos rep 1  t_total    0.003 s   PASS   (CSV idénticos)
+      p2spatial k=64    1 hilos rep 1  t_total    0.015 s   PASS   (CSV idénticos)
+      p2spatial k=64    6 hilos rep 1  t_total    0.004 s   PASS   (CSV idénticos)
+      p2spatial k=64   12 hilos rep 1  t_total    0.003 s   PASS   (CSV idénticos)
+      p2spatial k=64   24 hilos rep 1  t_total    0.003 s   PASS   (CSV idénticos)
+    data/40000_data.csv: serial          t_total    0.349 s   label_hash d9cd37edf20b1016  count_hash 9686fdc54323e395
+      p2spatial k=2     1 hilos rep 1  t_total    0.209 s   PASS
+      p2spatial k=2     6 hilos rep 1  t_total    0.112 s   PASS
+      p2spatial k=2    12 hilos rep 1  t_total    0.112 s   PASS
+      p2spatial k=2    24 hilos rep 1  t_total    0.112 s   PASS
+      p2spatial k=4     1 hilos rep 1  t_total    0.136 s   PASS
+      p2spatial k=4     6 hilos rep 1  t_total    0.063 s   PASS
+      p2spatial k=4    12 hilos rep 1  t_total    0.064 s   PASS
+      p2spatial k=4    24 hilos rep 1  t_total    0.064 s   PASS
+      p2spatial k=8     1 hilos rep 1  t_total    0.088 s   PASS
+      p2spatial k=8     6 hilos rep 1  t_total    0.027 s   PASS
+      p2spatial k=8    12 hilos rep 1  t_total    0.027 s   PASS
+      p2spatial k=8    24 hilos rep 1  t_total    0.027 s   PASS
+      p2spatial k=16    1 hilos rep 1  t_total    0.070 s   PASS
+      p2spatial k=16    6 hilos rep 1  t_total    0.025 s   PASS
+      p2spatial k=16   12 hilos rep 1  t_total    0.025 s   PASS
+      p2spatial k=16   24 hilos rep 1  t_total    0.025 s   PASS
+      p2spatial k=32    1 hilos rep 1  t_total    0.058 s   PASS
+      p2spatial k=32    6 hilos rep 1  t_total    0.015 s   PASS
+      p2spatial k=32   12 hilos rep 1  t_total    0.009 s   PASS
+      p2spatial k=32   24 hilos rep 1  t_total    0.009 s   PASS
+      p2spatial k=64    1 hilos rep 1  t_total    0.051 s   PASS
+      p2spatial k=64    6 hilos rep 1  t_total    0.012 s   PASS
+      p2spatial k=64   12 hilos rep 1  t_total    0.009 s   PASS
+      p2spatial k=64   24 hilos rep 1  t_total    0.008 s   PASS
+    data/80000_data.csv: serial          t_total    1.392 s   label_hash 77915b8ef424d612  count_hash 7bc9dca94074be67
+      p2spatial k=2     1 hilos rep 1  t_total    0.835 s   PASS
+      p2spatial k=2     6 hilos rep 1  t_total    0.424 s   PASS
+      p2spatial k=2    12 hilos rep 1  t_total    0.421 s   PASS
+      p2spatial k=2    24 hilos rep 1  t_total    0.421 s   PASS
+      p2spatial k=4     1 hilos rep 1  t_total    0.542 s   PASS
+      p2spatial k=4     6 hilos rep 1  t_total    0.268 s   PASS
+      p2spatial k=4    12 hilos rep 1  t_total    0.268 s   PASS
+      p2spatial k=4    24 hilos rep 1  t_total    0.269 s   PASS
+      p2spatial k=8     1 hilos rep 1  t_total    0.349 s   PASS
+      p2spatial k=8     6 hilos rep 1  t_total    0.110 s   PASS
+      p2spatial k=8    12 hilos rep 1  t_total    0.109 s   PASS
+      p2spatial k=8    24 hilos rep 1  t_total    0.109 s   PASS
+      p2spatial k=16    1 hilos rep 1  t_total    0.278 s   PASS
+      p2spatial k=16    6 hilos rep 1  t_total    0.102 s   PASS
+      p2spatial k=16   12 hilos rep 1  t_total    0.101 s   PASS
+      p2spatial k=16   24 hilos rep 1  t_total    0.101 s   PASS
+      p2spatial k=32    1 hilos rep 1  t_total    0.225 s   PASS
+      p2spatial k=32    6 hilos rep 1  t_total    0.057 s   PASS
+      p2spatial k=32   12 hilos rep 1  t_total    0.031 s   PASS
+      p2spatial k=32   24 hilos rep 1  t_total    0.031 s   PASS
+      p2spatial k=64    1 hilos rep 1  t_total    0.189 s   PASS
+      p2spatial k=64    6 hilos rep 1  t_total    0.042 s   PASS
+      p2spatial k=64   12 hilos rep 1  t_total    0.032 s   PASS
+      p2spatial k=64   24 hilos rep 1  t_total    0.032 s   PASS
+    data/120000_data.csv: serial          t_total    3.151 s   label_hash 496ce12c02b572e3  count_hash 0b638d5538693451
+      p2spatial k=2     1 hilos rep 1  t_total    1.877 s   PASS
+      p2spatial k=2     6 hilos rep 1  t_total    0.966 s   PASS
+      p2spatial k=2    12 hilos rep 1  t_total    0.963 s   PASS
+      p2spatial k=2    24 hilos rep 1  t_total    0.963 s   PASS
+      p2spatial k=4     1 hilos rep 1  t_total    1.226 s   PASS
+      p2spatial k=4     6 hilos rep 1  t_total    0.598 s   PASS
+      p2spatial k=4    12 hilos rep 1  t_total    0.599 s   PASS
+      p2spatial k=4    24 hilos rep 1  t_total    0.598 s   PASS
+      p2spatial k=8     1 hilos rep 1  t_total    0.781 s   PASS
+      p2spatial k=8     6 hilos rep 1  t_total    0.243 s   PASS
+      p2spatial k=8    12 hilos rep 1  t_total    0.243 s   PASS
+      p2spatial k=8    24 hilos rep 1  t_total    0.242 s   PASS
+      p2spatial k=16    1 hilos rep 1  t_total    0.626 s   PASS
+      p2spatial k=16    6 hilos rep 1  t_total    0.226 s   PASS
+      p2spatial k=16   12 hilos rep 1  t_total    0.225 s   PASS
+      p2spatial k=16   24 hilos rep 1  t_total    0.224 s   PASS
+      p2spatial k=32    1 hilos rep 1  t_total    0.499 s   PASS
+      p2spatial k=32    6 hilos rep 1  t_total    0.127 s   PASS
+      p2spatial k=32   12 hilos rep 1  t_total    0.072 s   PASS
+      p2spatial k=32   24 hilos rep 1  t_total    0.072 s   PASS
+      p2spatial k=64    1 hilos rep 1  t_total    0.413 s   PASS
+      p2spatial k=64    6 hilos rep 1  t_total    0.095 s   PASS
+      p2spatial k=64   12 hilos rep 1  t_total    0.064 s   PASS
+      p2spatial k=64   24 hilos rep 1  t_total    0.066 s   PASS
+    data/140000_data.csv: serial          t_total    4.259 s   label_hash 59c4e666180874dd  count_hash 24962a4a141b54f8
+      p2spatial k=2     1 hilos rep 1  t_total    2.550 s   PASS
+      p2spatial k=2     6 hilos rep 1  t_total    1.341 s   PASS
+      p2spatial k=2    12 hilos rep 1  t_total    1.342 s   PASS
+      p2spatial k=2    24 hilos rep 1  t_total    1.346 s   PASS
+      p2spatial k=4     1 hilos rep 1  t_total    1.665 s   PASS
+      p2spatial k=4     6 hilos rep 1  t_total    0.849 s   PASS
+      p2spatial k=4    12 hilos rep 1  t_total    0.854 s   PASS
+      p2spatial k=4    24 hilos rep 1  t_total    0.851 s   PASS
+      p2spatial k=8     1 hilos rep 1  t_total    1.068 s   PASS
+      p2spatial k=8     6 hilos rep 1  t_total    0.341 s   PASS
+      p2spatial k=8    12 hilos rep 1  t_total    0.341 s   PASS
+      p2spatial k=8    24 hilos rep 1  t_total    0.340 s   PASS
+      p2spatial k=16    1 hilos rep 1  t_total    0.844 s   PASS
+      p2spatial k=16    6 hilos rep 1  t_total    0.315 s   PASS
+      p2spatial k=16   12 hilos rep 1  t_total    0.314 s   PASS
+      p2spatial k=16   24 hilos rep 1  t_total    0.314 s   PASS
+      p2spatial k=32    1 hilos rep 1  t_total    0.679 s   PASS
+      p2spatial k=32    6 hilos rep 1  t_total    0.174 s   PASS
+      p2spatial k=32   12 hilos rep 1  t_total    0.102 s   PASS
+      p2spatial k=32   24 hilos rep 1  t_total    0.101 s   PASS
+      p2spatial k=64    1 hilos rep 1  t_total    0.559 s   PASS
+      p2spatial k=64    6 hilos rep 1  t_total    0.132 s   PASS
+      p2spatial k=64   12 hilos rep 1  t_total    0.092 s   PASS
+      p2spatial k=64   24 hilos rep 1  t_total    0.097 s   PASS
+    data/160000_data.csv: serial          t_total    5.559 s   label_hash 56182804d776ed5f  count_hash 8ff42be7d5ab967f
+      p2spatial k=2     1 hilos rep 1  t_total    3.324 s   PASS
+      p2spatial k=2     6 hilos rep 1  t_total    1.751 s   PASS
+      p2spatial k=2    12 hilos rep 1  t_total    1.750 s   PASS
+      p2spatial k=2    24 hilos rep 1  t_total    1.772 s   PASS
+      p2spatial k=4     1 hilos rep 1  t_total    2.147 s   PASS
+      p2spatial k=4     6 hilos rep 1  t_total    1.065 s   PASS
+      p2spatial k=4    12 hilos rep 1  t_total    1.065 s   PASS
+      p2spatial k=4    24 hilos rep 1  t_total    1.072 s   PASS
+      p2spatial k=8     1 hilos rep 1  t_total    1.388 s   PASS
+      p2spatial k=8     6 hilos rep 1  t_total    0.462 s   PASS
+      p2spatial k=8    12 hilos rep 1  t_total    0.461 s   PASS
+      p2spatial k=8    24 hilos rep 1  t_total    0.461 s   PASS
+      p2spatial k=16    1 hilos rep 1  t_total    1.106 s   PASS
+      p2spatial k=16    6 hilos rep 1  t_total    0.408 s   PASS
+      p2spatial k=16   12 hilos rep 1  t_total    0.405 s   PASS
+      p2spatial k=16   24 hilos rep 1  t_total    0.404 s   PASS
+      p2spatial k=32    1 hilos rep 1  t_total    0.880 s   PASS
+      p2spatial k=32    6 hilos rep 1  t_total    0.225 s   PASS
+      p2spatial k=32   12 hilos rep 1  t_total    0.128 s   PASS
+      p2spatial k=32   24 hilos rep 1  t_total    0.131 s   PASS
+      p2spatial k=64    1 hilos rep 1  t_total    0.718 s   PASS
+      p2spatial k=64    6 hilos rep 1  t_total    0.176 s   PASS
+      p2spatial k=64   12 hilos rep 1  t_total    0.113 s   PASS
+      p2spatial k=64   24 hilos rep 1  t_total    0.118 s   PASS
+    data/180000_data.csv: serial          t_total    7.035 s   label_hash dec3fa3398f5b130  count_hash 3a6fdae36710bb05
+      p2spatial k=2     1 hilos rep 1  t_total    4.204 s   PASS
+      p2spatial k=2     6 hilos rep 1  t_total    2.211 s   PASS
+      p2spatial k=2    12 hilos rep 1  t_total    2.221 s   PASS
+      p2spatial k=2    24 hilos rep 1  t_total    2.228 s   PASS
+      p2spatial k=4     1 hilos rep 1  t_total    2.711 s   PASS
+      p2spatial k=4     6 hilos rep 1  t_total    1.350 s   PASS
+      p2spatial k=4    12 hilos rep 1  t_total    1.352 s   PASS
+      p2spatial k=4    24 hilos rep 1  t_total    1.348 s   PASS
+      p2spatial k=8     1 hilos rep 1  t_total    1.743 s   PASS
+      p2spatial k=8     6 hilos rep 1  t_total    0.584 s   PASS
+      p2spatial k=8    12 hilos rep 1  t_total    0.585 s   PASS
+      p2spatial k=8    24 hilos rep 1  t_total    0.586 s   PASS
+      p2spatial k=16    1 hilos rep 1  t_total    1.381 s   PASS
+      p2spatial k=16    6 hilos rep 1  t_total    0.513 s   PASS
+      p2spatial k=16   12 hilos rep 1  t_total    0.512 s   PASS
+      p2spatial k=16   24 hilos rep 1  t_total    0.515 s   PASS
+      p2spatial k=32    1 hilos rep 1  t_total    1.108 s   PASS
+      p2spatial k=32    6 hilos rep 1  t_total    0.284 s   PASS
+      p2spatial k=32   12 hilos rep 1  t_total    0.165 s   PASS
+      p2spatial k=32   24 hilos rep 1  t_total    0.164 s   PASS
+      p2spatial k=64    1 hilos rep 1  t_total    0.904 s   PASS
+      p2spatial k=64    6 hilos rep 1  t_total    0.218 s   PASS
+      p2spatial k=64   12 hilos rep 1  t_total    0.150 s   PASS
+      p2spatial k=64   24 hilos rep 1  t_total    0.148 s   PASS
+    data/200000_data.csv: serial          t_total    8.694 s   label_hash 5e96964b762d458b  count_hash 64aa7f62aaab4893
+      p2spatial k=2     1 hilos rep 1  t_total    5.191 s   PASS
+      p2spatial k=2     6 hilos rep 1  t_total    2.732 s   PASS
+      p2spatial k=2    12 hilos rep 1  t_total    2.741 s   PASS
+      p2spatial k=2    24 hilos rep 1  t_total    2.732 s   PASS
+      p2spatial k=4     1 hilos rep 1  t_total    3.350 s   PASS
+      p2spatial k=4     6 hilos rep 1  t_total    1.665 s   PASS
+      p2spatial k=4    12 hilos rep 1  t_total    1.642 s   PASS
+      p2spatial k=4    24 hilos rep 1  t_total    1.640 s   PASS
+      p2spatial k=8     1 hilos rep 1  t_total    2.147 s   PASS
+      p2spatial k=8     6 hilos rep 1  t_total    0.733 s   PASS
+      p2spatial k=8    12 hilos rep 1  t_total    0.733 s   PASS
+      p2spatial k=8    24 hilos rep 1  t_total    0.733 s   PASS
+      p2spatial k=16    1 hilos rep 1  t_total    1.701 s   PASS
+      p2spatial k=16    6 hilos rep 1  t_total    0.626 s   PASS
+      p2spatial k=16   12 hilos rep 1  t_total    0.624 s   PASS
+      p2spatial k=16   24 hilos rep 1  t_total    0.624 s   PASS
+      p2spatial k=32    1 hilos rep 1  t_total    1.365 s   PASS
+      p2spatial k=32    6 hilos rep 1  t_total    0.351 s   PASS
+      p2spatial k=32   12 hilos rep 1  t_total    0.212 s   PASS
+      p2spatial k=32   24 hilos rep 1  t_total    0.207 s   PASS
+      p2spatial k=64    1 hilos rep 1  t_total    1.113 s   PASS
+      p2spatial k=64    6 hilos rep 1  t_total    0.269 s   PASS
+      p2spatial k=64   12 hilos rep 1  t_total    0.182 s   PASS
+      p2spatial k=64   24 hilos rep 1  t_total    0.185 s   PASS
+consistency: PASS (0 corridas con diferencias)
+
+== notebook: working copy executed headless on the serial output for N = 4000 ==
+== checksums: data/SHA256SUMS ==
+    OK        data/120000_data.csv
+    OK        data/140000_data.csv
+    OK        data/160000_data.csv
+    OK        data/180000_data.csv
+    OK        data/200000_data.csv
+    OK        data/20000_data.csv
+    OK        data/40000_data.csv
+    OK        data/4000_data.csv
+    OK        data/80000_data.csv
+    datasets present: [4000, 20000, 40000, 80000, 120000, 140000, 160000, 180000, 200000]; not generated yet: none
+checksums: PASS
+    wrote results/viz/4000_results.csv and results/viz/4000_detailed.csv
+    executed copy saved to results/viz/DBSCAN_noise_equipo.executed.ipynb (local artifact)
+    C++-results cell (C1): 1 image output(s)
+    cell T2: oracle_report returned 'PASS'
+== checksums: data/SHA256SUMS ==
+    OK        data/120000_data.csv
+    OK        data/140000_data.csv
+    OK        data/160000_data.csv
+    OK        data/180000_data.csv
+    OK        data/200000_data.csv
+    OK        data/20000_data.csv
+    OK        data/40000_data.csv
+    OK        data/4000_data.csv
+    OK        data/80000_data.csv
+    datasets present: [4000, 20000, 40000, 80000, 120000, 140000, 160000, 180000, 200000]; not generated yet: none
+checksums: PASS
+notebook: PASS
+
+== summary ==
+    cases (todos)          PASS
+    errors                 PASS
+    stress                 PASS
+    checksums              PASS
+    oracle 4000            PASS
+    oracle 20000           PASS
+    consistency p1         PASS
+    consistency p2         PASS
+    consistency p2spatial  PASS
+    notebook               PASS
+all: PASS

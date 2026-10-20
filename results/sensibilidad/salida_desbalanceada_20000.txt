@@ -1,0 +1,33 @@
+piloto 'sensibilidad desbalanceada 20000': results/sensibilidad/datos/desbalanceada_20000.csv, 3 repeticiones, corridas serial p1:12 p2:32:12 p2:64:12 p2s:32:12 p2s:64:12 p2s:64:1
+  rep 1  p2:64:12      t_total   0.0115 s  (paso1 0.0112, paso2 0.0003)  carga 2.70
+  rep 1  p2s:64:1      t_total   0.0221 s  (paso1 0.0194, paso2 0.0000)  carga 2.70
+  rep 1  p2s:64:12     t_total   0.0098 s  (paso1 0.0091, paso2 0.0001)  carga 2.70
+  rep 1  p2:32:12      t_total   0.0116 s  (paso1 0.0112, paso2 0.0003)  carga 2.70
+  rep 1  serial        t_total   0.0850 s  (paso1 0.0842, paso2 0.0009)  carga 2.70
+  rep 1  p2s:32:12     t_total   0.0124 s  (paso1 0.0116, paso2 0.0001)  carga 2.70
+  rep 1  p1:12         t_total   0.0126 s  (paso1 0.0124, paso2 0.0002)  carga 2.70
+  rep 2  p2:32:12      t_total   0.0130 s  (paso1 0.0127, paso2 0.0003)  carga 2.70
+  rep 2  p2:64:12      t_total   0.0126 s  (paso1 0.0122, paso2 0.0004)  carga 2.70
+  rep 2  p1:12         t_total   0.0116 s  (paso1 0.0114, paso2 0.0002)  carga 2.70
+  rep 2  p2s:32:12     t_total   0.0127 s  (paso1 0.0120, paso2 0.0001)  carga 2.70
+  rep 2  p2s:64:12     t_total   0.0104 s  (paso1 0.0096, paso2 0.0001)  carga 2.70
+  rep 2  serial        t_total   0.0858 s  (paso1 0.0849, paso2 0.0009)  carga 2.70
+  rep 2  p2s:64:1      t_total   0.0237 s  (paso1 0.0210, paso2 0.0001)  carga 2.70
+  rep 3  serial        t_total   0.0875 s  (paso1 0.0866, paso2 0.0009)  carga 2.70
+  rep 3  p2:32:12      t_total   0.0119 s  (paso1 0.0116, paso2 0.0003)  carga 2.70
+  rep 3  p2:64:12      t_total   0.0118 s  (paso1 0.0113, paso2 0.0005)  carga 2.70
+  rep 3  p2s:64:1      t_total   0.0230 s  (paso1 0.0200, paso2 0.0000)  carga 2.70
+  rep 3  p2s:64:12     t_total   0.0100 s  (paso1 0.0092, paso2 0.0001)  carga 2.70
+  rep 3  p2s:32:12     t_total   0.0118 s  (paso1 0.0111, paso2 0.0001)  carga 2.70
+  rep 3  p1:12         t_total   0.0111 s  (paso1 0.0109, paso2 0.0002)  carga 2.70
+
+  corrida       n  media t_total  desv. est.    mínimo  speedup
+  serial        3       0.0861 s    0.0013 s  0.0850 s     1.00
+  p1:12         3       0.0118 s    0.0008 s  0.0111 s     7.33
+  p2:32:12      3       0.0122 s    0.0007 s  0.0116 s     7.09
+  p2:64:12      3       0.0120 s    0.0006 s  0.0115 s     7.19
+  p2s:32:12     3       0.0123 s    0.0005 s  0.0118 s     7.02
+  p2s:64:12     3       0.0101 s    0.0003 s  0.0098 s     8.57
+  p2s:64:1      3       0.0229 s    0.0008 s  0.0221 s     3.76
+  hashes de todas las corridas: label_hash 2e94b75c11447b35  count_hash 3cfef0253accdbbb
+  registro agregado a results/sensibilidad/sensibilidad.jsonl (mediciones provisionales)
