@@ -13,3 +13,7 @@ results/viz/
 
 # macOS
 .DS_Store
+
+# Pruebas del ejecutor del benchmark y su candado (los resultados oficiales sí se versionan: results/official/)
+results/runner_test/
+results/.benchmark.lock
